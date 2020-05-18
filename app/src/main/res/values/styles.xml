@@ -1,0 +1,22 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:windowLightStatusBar" tools:targetApi='23'>false</item>
+        <item name="colorControlNormal">@color/textThemeDark</item>
+
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+    </style>
+
+    <style name="myEditTextStyle">
+        <item name="android:colorControlNormal">#ffffff</item>
+        <item name="android:colorControlActivated">#ffffff</item>
+        <item name="android:colorControlHighlight">#ffffff</item>
+        <item name="android:colorAccent">#ffffff</item>
+        <item name="android:textColorHint">#ffffff</item>
+    </style>
+
+</resources>

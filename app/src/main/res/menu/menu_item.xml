@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_login"
+        android:title="로그인"/>
+    <item
+        android:id="@+id/menu_signin"
+        android:title="회원가입"/>
+
+    <item
+        android:id="@+id/reserve"
+        android:title="예약하기"/>
+
+    <item
+        android:id="@+id/check_reserve"
+        android:title="예약확인"/>
+
+    <item
+        android:id="@+id/facility_guide"
+        android:title="시설 안내"/>
+
+    <item
+        android:id="@+id/menu_logout"
+        android:title="로그아웃"/>
+
+
+</menu>

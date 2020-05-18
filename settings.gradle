@@ -1,0 +1,2 @@
+rootProject.name='HotelNFC'
+include ':app'
