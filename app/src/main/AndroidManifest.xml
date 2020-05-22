@@ -11,8 +11,6 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".frag_check_reserve"></activity>
-        <activity android:name=".Login"></activity>
-        <activity android:name=".Sign_In"></activity>
 
         <activity android:name=".MainActivity">
             <intent-filter>

@@ -36,8 +36,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
 
-    Fragment frag_reserve, frag_reserve_room;
-
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +45,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.drawerlayout);
         toolbar = findViewById(R.id.toolbar);
         navigationView = findViewById(R.id.navigationview);
-
-        frag_reserve = (frag_reserve) getSupportFragmentManager().findFragmentById(R.id.frag_reserve)
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
@@ -72,7 +68,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getSupportFragmentManager().beginTransaction().add(R.id.content_fragment, new Frag_nfc()).commit();
 
     }
-
 
     //뒤로가기 버튼을 눌렀을 때 이전화면으로 가도록 이게 없다면 그냥 앱 종료되버림
     @Override
@@ -99,20 +94,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.check_reserve) {
             getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, new frag_check_reserve()).commit();
         } else if (id == R.id.menu_login) {
-            Intent intent = new Intent(getApplicationContext(), Login.class);
-            startActivity(intent);
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, new Frag_login()).commit();
         } else if (id == R.id.menu_signin) {
-            Intent intent = new Intent(getApplicationContext(), Sign_In.class);
-            startActivity(intent);
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, new Frag_signin()).commit();
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    public void onChangeFragment(int index) {
-        if(index == 0) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, frag_reserve_room).commit();
-        }
     }
 }

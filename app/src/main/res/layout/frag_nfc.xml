@@ -13,6 +13,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="40dp"
         android:text="D-Day 21"
+        android:textColor="#ffffff"
         android:textSize="30dp"
         android:gravity="center"
         android:fontFamily="@font/gmarketsansttfbold" />
@@ -37,16 +38,18 @@
                 android:id="@+id/door_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="50dp"
+                android:fontFamily="@font/gmarketsansttfbold"
+                android:letterSpacing="0.2"
                 android:text="사용중인
 
 
+
+
                 모바일키가 없습니다."
-                android:textSize="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="50dp"
-                android:layout_gravity="center_horizontal"
-                android:letterSpacing="0.2"
-                android:fontFamily="@font/gmarketsansttfbold"/>
+                android:textSize="20dp" />
 
         </LinearLayout>
 
