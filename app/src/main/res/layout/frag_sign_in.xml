@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="10dp"
         android:textColorHint="#ffffff"
         android:theme="@style/myEditTextStyle"
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout_pw"
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="10dp"
         android:textColorHint="#ffffff"
         android:theme="@style/myEditTextStyle"
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout_pw_check"
@@ -61,10 +61,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="10dp"
         android:textColorHint="#ffffff"
         android:theme="@style/myEditTextStyle"
-        app:layout_constraintBottom_toTopOf="@+id/textInputLayout_email"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayout_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -75,6 +75,52 @@
             android:drawableEnd="@drawable/ic_lock_outline_black_24dp"
             android:fontFamily="@font/gmarketsansttfmedium"
             android:hint="Password Check" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColorHint="#ffffff"
+        android:theme="@style/myEditTextStyle"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayout_phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputEditText_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/gmarketsansttfmedium"
+            android:hint="Name"
+            android:drawableEnd="@drawable/ic_phone_black_24dp"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColorHint="#ffffff"
+        android:theme="@style/myEditTextStyle"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayout_email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputEditText_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/gmarketsansttfmedium"
+            android:hint="Phone"
+            android:drawableEnd="@drawable/ic_phone_black_24dp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -96,7 +142,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/gmarketsansttfmedium"
-            android:hint="Phone"
+            android:hint="Email"
             android:drawableEnd="@drawable/ic_phone_black_24dp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
