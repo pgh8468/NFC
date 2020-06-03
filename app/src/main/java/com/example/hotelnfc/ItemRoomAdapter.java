@@ -66,6 +66,8 @@ public class ItemRoomAdapter extends RecyclerView.Adapter<ItemRoomAdapter.Custom
             this.room_picture = (ImageView) itemView.findViewById(R.id.room_picture);
             this.room_class = (TextView) itemView.findViewById(R.id.room_class);
             this.room_price = (TextView) itemView.findViewById(R.id.room_price);
+
+            room_picture.setImageResource(R.drawable.first);
         }
     }
 }

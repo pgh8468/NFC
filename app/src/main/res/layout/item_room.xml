@@ -26,6 +26,7 @@
             android:layout_height="wrap_content"
             android:text="Room Class"
             android:textSize="25dp"
+            android:textColor="#ffffff"
             android:fontFamily="@font/gmarketsansttfbold"/>
 
         <LinearLayout
@@ -39,6 +40,7 @@
                 android:layout_marginTop="5dp"
                 android:textSize="15dp"
                 android:text="기준 2명 / 최대 3명"
+                android:textColor="#ffffff"
                 android:fontFamily="@font/gmarketsansttfmedium"/>
 
         </LinearLayout>
@@ -57,6 +59,7 @@
                 android:text="판매가 · 1박 기준"
                 android:layout_gravity="end"
                 android:layout_marginRight="10dp"
+                android:textColor="#ffffff"
                 android:fontFamily="@font/gmarketsansttfmedium"/>
 
             <LinearLayout
@@ -73,12 +76,14 @@
                     android:layout_height="wrap_content"
                     android:text="79,450"
                     android:textSize="25dp"
+                    android:textColor="#ffffff"
                     android:fontFamily="@font/gmarketsansttfbold"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="원"
+                    android:textColor="#ffffff"
                     android:fontFamily="@font/gmarketsansttfbold"/>
 
             </LinearLayout>
