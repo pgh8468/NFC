@@ -65,7 +65,7 @@ public class Frag_signin extends Fragment {
         textInputEditText_id = view.findViewById(R.id.textInputEditText_id);
         textInputEditText_pw = view.findViewById(R.id.textInputEditText_pw);
         textInputEditText_pw_check = view.findViewById(R.id.textInputEditText_pw_check);
-        textInputEditText_name = view.findViewById(R.id.textInputLayout_name);
+        textInputEditText_name = view.findViewById(R.id.textInputEditText_name);
         textInputEditText_phone = view.findViewById(R.id.textInputEditText_phone);
         textInputEditText_email = view.findViewById(R.id.textInputEditText_email);
 
