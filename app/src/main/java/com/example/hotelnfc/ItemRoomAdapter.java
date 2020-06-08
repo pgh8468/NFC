@@ -1,5 +1,6 @@
 package com.example.hotelnfc;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +15,12 @@ import java.util.ArrayList;
 
 public class ItemRoomAdapter extends RecyclerView.Adapter<ItemRoomAdapter.CustomViewHolder> {
 
+    Context context;
     private ArrayList<Item_room> arrayList;
+    RecyclerView recyclerView;
 
-    public ItemRoomAdapter(ArrayList<Item_room> arrayList) {
+    public ItemRoomAdapter(Context context, ArrayList<Item_room> arrayList) {
+        this.context = context;
         this.arrayList = arrayList;
     }
 
@@ -24,7 +28,6 @@ public class ItemRoomAdapter extends RecyclerView.Adapter<ItemRoomAdapter.Custom
     @NonNull
     @Override
     public ItemRoomAdapter.CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_room, parent, false);
 
         CustomViewHolder holder = new CustomViewHolder(view);
@@ -35,6 +38,7 @@ public class ItemRoomAdapter extends RecyclerView.Adapter<ItemRoomAdapter.Custom
     //실제 추가될때의 생명주기
     @Override
     public void onBindViewHolder(@NonNull final ItemRoomAdapter.CustomViewHolder holder, int position) {
+
         holder.room_picture.setImageResource(arrayList.get(position).getRoom_picture());
         holder.room_class.setText(arrayList.get(position).getRoom_class());
         holder.room_price.setText(arrayList.get(position).getRoom_price());
@@ -44,15 +48,15 @@ public class ItemRoomAdapter extends RecyclerView.Adapter<ItemRoomAdapter.Custom
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String curPrice = holder.room_price.getText().toString();
-                Toast.makeText(v.getContext(), curPrice, Toast.LENGTH_SHORT).show();
+                String curName = holder.room_class.getText().toString();
+                Toast.makeText(v.getContext(), curName, Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return (null != arrayList ? arrayList.size() : 0);
+        return arrayList.size();
     }
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
@@ -63,11 +67,11 @@ public class ItemRoomAdapter extends RecyclerView.Adapter<ItemRoomAdapter.Custom
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            this.room_picture = (ImageView) itemView.findViewById(R.id.room_picture);
-            this.room_class = (TextView) itemView.findViewById(R.id.room_class);
-            this.room_price = (TextView) itemView.findViewById(R.id.room_price);
+            room_picture = (ImageView) itemView.findViewById(R.id.room_picture);
+            room_class = (TextView) itemView.findViewById(R.id.room_class);
+            room_price = (TextView) itemView.findViewById(R.id.room_price);
 
-            room_picture.setImageResource(R.drawable.first);
+
         }
     }
 }

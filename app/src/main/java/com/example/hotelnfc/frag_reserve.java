@@ -1,30 +1,25 @@
 package com.example.hotelnfc;
 
-import android.app.Activity;
-import android.graphics.Color;
-import android.os.AsyncTask;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.prolificinteractive.materialcalendarview.CalendarDay;
-import com.prolificinteractive.materialcalendarview.CalendarMode;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
+import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
-import java.util.concurrent.Executors;
+
+import static com.prolificinteractive.materialcalendarview.CalendarUtils.getYear;
 
 public class frag_reserve extends Fragment {
 
@@ -32,6 +27,8 @@ public class frag_reserve extends Fragment {
     }
 
     View view;
+
+    MaterialCalendarView calendarView;
 
     Button reserve_room_button;
 
@@ -45,12 +42,19 @@ public class frag_reserve extends Fragment {
             public void onClick(View v) {
                 frag_reserve_room frag_reserve_room = new frag_reserve_room();
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.content_fragment, frag_reserve_room);
+                ((FragmentTransaction) fragmentTransaction).replace(R.id.content_fragment, frag_reserve_room);
                 fragmentTransaction.commit();
-                Log.d("씨발", "씨이발 됐당 내가 바보였다;;");
             }
         });
 
+        calendarView = view.findViewById(R.id.calendarView);
+
         return view;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
     }
 }

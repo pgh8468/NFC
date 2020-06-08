@@ -7,11 +7,13 @@
     android:orientation="vertical">
 
     <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:mcv_showOtherDates="other_months"
-        >
+        app:mcv_dateTextAppearance="@color/cardview_light_background"
+        app:mcv_showOtherDates="all"
+        app:mcv_selectionColor="#75C5C3">
 
     </com.prolificinteractive.materialcalendarview.MaterialCalendarView>
 
