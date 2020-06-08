@@ -1,6 +1,7 @@
 package com.example.hotelnfc;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,6 +13,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -28,7 +31,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.ExecutionException;
 
-public class Frag_signin extends Fragment {
+public class Frag_signin extends Fragment implements MainActivity.onKeyBackPressedListener {
 
     View view;
     //TextInputLayout - 레이아웃 구성
@@ -70,6 +73,11 @@ public class Frag_signin extends Fragment {
         textInputEditText_email = view.findViewById(R.id.textInputEditText_email);
 
         button_approval = view.findViewById(R.id.btn_finish);
+
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        fragmentTransaction.addToBackStack(null);
 
         button_approval.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,6 +171,19 @@ public class Frag_signin extends Fragment {
             }
             return output.toString();
         }
+    }
+
+    @Override
+    public void onBackKey() {
+        MainActivity mainActivity = (MainActivity) getActivity();
+        mainActivity.setOnKeyBackPressedListener(null);
+        mainActivity.onBackPressed();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        ((MainActivity)context).setOnKeyBackPressedListener(this);
     }
 
 }

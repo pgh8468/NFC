@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/nfc_layout">
 
     <TextView
         android:id="@+id/txt_remain_book_date"
@@ -41,8 +42,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="50dp"
-                android:fontFamily="@font/gmarketsansttfbold"
+                android:fontFamily="@font/gmarketsansttfmedium"
                 android:letterSpacing="0.2"
+                android:textColor="#ffffff"
                 android:text="로그인을 해주세요"
                 android:textSize="20dp" />
 
@@ -60,12 +62,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_bg"
+                android:textColor="#ffffff"
                 android:text="모바일키 받기"
-                android:fontFamily="@font/gmarketsansttfbold"
-                android:layout_gravity="center"
-                android:gravity="center_vertical|center_horizontal"
-                android:layout_marginTop="70dp"
-                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/gmarketsansttfmedium"
+                android:layout_marginTop="120dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginLeft="15dp"/>
 

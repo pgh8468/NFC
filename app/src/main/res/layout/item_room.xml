@@ -3,14 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:layout_margin="10dp">
 
     <ImageView
         android:id="@+id/room_picture"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:src="@drawable/ic_launcher_foreground"/>
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:padding="10dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,10 +21,10 @@
         android:layout_marginRight="15dp">
 
         <TextView
+            android:textColor="#ffffff"
             android:id="@+id/room_class"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Room Class"
             android:textSize="25dp"
             android:fontFamily="@font/gmarketsansttfbold"/>
 
@@ -39,6 +39,7 @@
                 android:layout_marginTop="5dp"
                 android:textSize="15dp"
                 android:text="기준 2명 / 최대 3명"
+                android:textColor="#ffffff"
                 android:fontFamily="@font/gmarketsansttfmedium"/>
 
         </LinearLayout>
@@ -57,6 +58,7 @@
                 android:text="판매가 · 1박 기준"
                 android:layout_gravity="end"
                 android:layout_marginRight="10dp"
+                android:textColor="#ffffff"
                 android:fontFamily="@font/gmarketsansttfmedium"/>
 
             <LinearLayout
@@ -71,14 +73,15 @@
                     android:id="@+id/room_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="79,450"
                     android:textSize="25dp"
+                    android:textColor="#ffffff"
                     android:fontFamily="@font/gmarketsansttfbold"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="원"
+                    android:textColor="#ffffff"
                     android:fontFamily="@font/gmarketsansttfbold"/>
 
             </LinearLayout>

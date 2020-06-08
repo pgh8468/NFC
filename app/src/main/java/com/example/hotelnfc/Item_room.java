@@ -1,5 +1,7 @@
 package com.example.hotelnfc;
 
+import android.graphics.drawable.Drawable;
+
 public class Item_room {
 
     private String room_class,room_price;

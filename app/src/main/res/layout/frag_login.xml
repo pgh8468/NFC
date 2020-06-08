@@ -27,6 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="ID"
+            android:textColor="#ffffff"
             android:fontFamily="@font/gmarketsansttfmedium"
             android:drawableEnd="@drawable/ic_perm_identity_black_24dp"/>
 
@@ -50,6 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
+            android:textColor="#ffffff"
             android:fontFamily="@font/gmarketsansttfmedium"
             android:drawableEnd="@drawable/ic_lock_outline_black_24dp"/>
 
