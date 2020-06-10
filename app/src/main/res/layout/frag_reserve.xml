@@ -11,9 +11,15 @@
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:mcv_dateTextAppearance="@color/cardview_light_background"
-        app:mcv_showOtherDates="all"
-        app:mcv_selectionColor="#75C5C3">
+        app:mcv_showOtherDates="none"
+        app:mcv_selectionColor="#3CA3C5"
+        app:mcv_arrowColor="#000000"
+        app:mcv_leftArrowMask="@drawable/ic_chevron_left_black_24dp"
+        app:mcv_rightArrowMask="@drawable/ic_chevron_right_black_24dp"
+        app:mcv_tileSize="60dp"
+        app:mcv_titleAnimationOrientation="horizontal"
+        app:mcv_allowClickDaysOutsideCurrentMonth="true"
+        android:background="#555555">
 
     </com.prolificinteractive.materialcalendarview.MaterialCalendarView>
 
@@ -23,6 +29,7 @@
         android:textSize="30dp"
         android:fontFamily="@font/gmarketsansttfmedium"
         android:background="@drawable/button_bg"
+        android:textColor="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 </LinearLayout>

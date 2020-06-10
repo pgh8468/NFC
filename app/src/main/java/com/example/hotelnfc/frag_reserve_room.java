@@ -1,10 +1,6 @@
 package com.example.hotelnfc;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.ClipData;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
