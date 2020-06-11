@@ -80,7 +80,7 @@ public class Frag_signin extends Fragment implements MainActivity.onKeyBackPress
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        fragmentTransaction.addToBackStack(null);
+       fragmentTransaction.addToBackStack(null);
 
         button_approval.setOnClickListener(new View.OnClickListener() {
             @Override

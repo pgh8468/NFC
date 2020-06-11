@@ -34,6 +34,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout_pw"
         app:passwordToggleEnabled="true"
+        app:passwordToggleTintMode="screen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -52,13 +53,15 @@
             android:textColor="#ffffff"
             android:drawableEnd="@drawable/ic_lock_outline_black_24dp"
             android:fontFamily="@font/gmarketsansttfmedium"
-            android:hint="Password" />
+            android:hint="Password"
+            android:cursorVisible="true"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout_pw_check"
         app:passwordToggleEnabled="true"
+        app:passwordToggleTintMode="screen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -85,7 +88,6 @@
         android:id="@+id/textInputLayout_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColorHint="#ffffff"
         android:theme="@style/myEditTextStyle"
         android:layout_marginBottom="10dp"
         android:layout_marginStart="30dp"
