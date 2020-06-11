@@ -50,7 +50,8 @@
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_lock_outline_black_24dp"
             android:fontFamily="@font/gmarketsansttfmedium"
-            android:hint="Password" />
+            android:hint="Password"
+            android:cursorVisible="true"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
