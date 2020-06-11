@@ -12,12 +12,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 
-import com.google.android.material.navigation.NavigationView;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
@@ -32,10 +28,6 @@ import java.util.List;
 public class frag_reserve extends Fragment {
 
     String Firstday, Lastday, result;
-
-    MainActivity mainActivity;
-    Frag_nfc frag_nfc;
-
     private static final String stay ="result";
 
     OneDayDecorator oneDayDecorator = new OneDayDecorator();
@@ -55,31 +47,22 @@ public class frag_reserve extends Fragment {
 
         reserve_room_button = view.findViewById(R.id.reserve_room_button);
 
-        mainActivity = (MainActivity) getActivity();
-
-        final FragmentManager fragmentManager = mainActivity.getSupportFragmentManager();
-
         reserve_room_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                frag_reserve_room frag_reserve_room = new frag_reserve_room();
+//                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+//                ((FragmentTransaction) fragmentTransaction).replace(R.id.content_fragment, frag_reserve_room);
+//                fragmentTransaction.commit();
 
-//                Bundle bundle = new Bundle();
-//                bundle.putString("stayDay", result);
-
-
-                frag_reserve_room frag_reserve_room = new frag_reserve_room();
-                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentManager.beginTransaction().replace(R.id.content_fragment, frag_reserve_room, null).addToBackStack("5").commit();
-                fragmentTransaction.commit();
-
-//                Bundle bundle = new Bundle();
-//                bundle.putString("stayDay", result);
-//                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-//                Frag_nfc frag_nfc = new Frag_nfc();
-//                frag_nfc.setArguments(bundle);
-//                transaction.add(R.id.content_fragment, frag_nfc);
-//                transaction.commit();
-          }
+                Bundle bundle = new Bundle();
+                bundle.putString("stayDay", result);
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                Frag_nfc frag_nfc = new Frag_nfc();
+                frag_nfc.setArguments(bundle);
+                transaction.replace(R.id.content_fragment, frag_nfc);
+                transaction.commit();
+            }
         });
 
         calendarView = view.findViewById(R.id.calendarView);
@@ -101,10 +84,18 @@ public class frag_reserve extends Fragment {
                 oneDayDecorator
         );
 
+        calendarView.setOnMonthChangedListener(new OnMonthChangedListener() {
+            @Override
+            public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
+
+            }
+        });
+
         calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
                 Toast.makeText(getContext(), "Click"+date, Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -122,12 +113,15 @@ public class frag_reserve extends Fragment {
             }
         });
 
+
+
         return view;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
     }
 }
