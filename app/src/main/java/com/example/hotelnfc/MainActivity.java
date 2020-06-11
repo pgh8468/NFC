@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         else if (id == R.id.menu_signin) {
             if (login_id == null) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, new Frag_signin()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, new Frag_signin(), null).addToBackStack(null).commit();
             } else {
                 //menuItem.setVisible(false);
             }

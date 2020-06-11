@@ -28,7 +28,7 @@ public class frag_check_reserve extends Fragment {
     View view;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.frag_reserve, null);
+        view = inflater.inflate(R.layout.frag_check_reserve, null);
 
         check_room_img = view.findViewById(R.id.check_room_img);
         check_checkin = view.findViewById(R.id.check_checkin);

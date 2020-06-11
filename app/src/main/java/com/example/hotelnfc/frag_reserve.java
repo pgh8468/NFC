@@ -111,7 +111,6 @@ public class frag_reserve extends Fragment {
             @Override
             public void onRangeSelected(@NonNull MaterialCalendarView widget, @NonNull List<CalendarDay> dates) {
 
-
                 Log.e("check dates", Integer.toString(dates.size()));
                 Log.e("first last", dates.get(0).toString()+"/"+dates.get(dates.size()-1).toString());
 
