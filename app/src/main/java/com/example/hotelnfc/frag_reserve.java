@@ -104,6 +104,7 @@ public class frag_reserve extends Fragment {
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
                 Toast.makeText(getContext(), "Click"+date, Toast.LENGTH_SHORT).show();
 
+
             }
         });
 
@@ -117,6 +118,7 @@ public class frag_reserve extends Fragment {
                 Firstday = dates.get(0).toString(); //체크인 날짜
                 Lastday = dates.get(dates.size()-1).toString(); //체크아웃 날짜
                 result = Integer.toString(dates.size());
+
             }
         });
 

@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class frag_reserve_room extends Fragment implements MainActivity.onKeyBackPressedListener {
+public class frag_reserve_room extends Fragment {
 
     private ArrayList<Item_room> arrayList;
     private ItemRoomAdapter itemRoomAdapter;
@@ -57,18 +57,5 @@ public class frag_reserve_room extends Fragment implements MainActivity.onKeyBac
         arrayList = new ArrayList<>();
         arrayList.add(new Item_room("Queen", "75,500", R.drawable.first));
         arrayList.add(new Item_room("King", "90,500", R.drawable.first));
-    }
-
-    @Override
-    public void onBackKey() {
-        MainActivity mainActivity = (MainActivity) getActivity();
-        mainActivity.setOnKeyBackPressedListener(null);
-        mainActivity.onBackPressed();
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        ((MainActivity)context).setOnKeyBackPressedListener(this);
     }
 }

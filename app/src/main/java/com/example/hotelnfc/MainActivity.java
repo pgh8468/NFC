@@ -132,28 +132,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
-
-    public interface onKeyBackPressedListener {
-        void onBackKey();
-    }
-
-    private onKeyBackPressedListener mOnKeyBackPressedListener;
-
-    public void setOnKeyBackPressedListener(onKeyBackPressedListener listener) {
-        mOnKeyBackPressedListener = listener;
-    }
-
-    @Override
-    public void onBackPressed() {
-        if(mOnKeyBackPressedListener != null) {
-            mOnKeyBackPressedListener.onBackKey();
-        } else {
-            if(getSupportFragmentManager().getBackStackEntryCount() == 0) {
-                Toast.makeText(this, "끄고싶은 한번 더눌러", Toast.LENGTH_SHORT).show();
-                finish();
-            } else {
-                super.onBackPressed();
-            }
-        }
-    }
 }
