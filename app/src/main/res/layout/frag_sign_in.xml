@@ -24,6 +24,7 @@
             android:id="@+id/textInputEditText_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="#ffffff"
             android:drawableEnd="@drawable/ic_perm_identity_black_24dp"
             android:fontFamily="@font/gmarketsansttfmedium"
             android:hint="ID" />
@@ -48,6 +49,7 @@
             android:id="@+id/textInputEditText_pw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="#ffffff"
             android:drawableEnd="@drawable/ic_lock_outline_black_24dp"
             android:fontFamily="@font/gmarketsansttfmedium"
             android:hint="Password" />
@@ -72,6 +74,7 @@
             android:id="@+id/textInputEditText_pw_check"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="#ffffff"
             android:drawableEnd="@drawable/ic_lock_outline_black_24dp"
             android:fontFamily="@font/gmarketsansttfmedium"
             android:hint="Password Check" />
@@ -95,6 +98,7 @@
             android:id="@+id/textInputEditText_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="#ffffff"
             android:fontFamily="@font/gmarketsansttfmedium"
             android:hint="Name"
             android:drawableEnd="@drawable/ic_phone_black_24dp"/>
@@ -118,6 +122,7 @@
             android:id="@+id/textInputEditText_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="#ffffff"
             android:fontFamily="@font/gmarketsansttfmedium"
             android:hint="Phone"
             android:drawableEnd="@drawable/ic_phone_black_24dp"/>
@@ -141,6 +146,7 @@
             android:id="@+id/textInputEditText_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="#ffffff"
             android:fontFamily="@font/gmarketsansttfmedium"
             android:hint="Email"
             android:drawableEnd="@drawable/ic_phone_black_24dp"/>

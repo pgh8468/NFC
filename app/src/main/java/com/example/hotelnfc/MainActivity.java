@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             mOnKeyBackPressedListener.onBackKey();
         } else {
             if(getSupportFragmentManager().getBackStackEntryCount() == 0) {
-                Toast.makeText(this, "씨발아 끄고싶은 한번 더눌러", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "끄고싶은 한번 더눌러", Toast.LENGTH_SHORT).show();
                 finish();
             } else {
                 super.onBackPressed();

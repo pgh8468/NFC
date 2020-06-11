@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,8 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.DataOutput;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -89,43 +92,58 @@ public class Frag_signin extends Fragment implements MainActivity.onKeyBackPress
                 String phone = textInputEditText_phone.getText().toString();
                 String email = textInputEditText_email.getText().toString();
 
-                if( id.length() ==0 || pw.length() ==0 || pw_check.length() ==0 || name.length() ==0 || phone.length()==0 || email.length() ==0){
+                try {
+
                     Activity act = getActivity();
-                    Toast.makeText(act,"입력되지 않은 정보를 입력해주세요.", Toast.LENGTH_LONG).show();
-                }
+                    Log.e("test", new DupInfoCheck().execute(new URL_make("check_id").makeURL(), id, "ID").get());
 
-                else if( id.length()<4){
-                    Activity act = getActivity();
-                    Toast.makeText(act,"아이디는 최소 5자리 이상이어야 합니다.", Toast.LENGTH_LONG).show();
-                }
-
-                else if( !(pw.equals(pw_check)) ){
-                    Activity act = getActivity();
-                    Toast.makeText(act,"비밀번호가 일치하지 않습니다.", Toast.LENGTH_LONG).show();
-                }
-
-                else{
-
-                    URL_make url_make = new URL_make("sign_in");
-                    String inputURL = url_make.makeURL();
-                    String response = "";
-                    try {
-                        response = new AddUserInfoToServer().execute().get();
-
-                        //서버에서 받아온 값의 유효성 검증
-                        if(response.equals("")){
-
-                        }
-                        else{
-
-                        }
-                    } catch (ExecutionException e) {
-                        e.printStackTrace();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                    if( id.length() ==0 || pw.length() ==0 || pw_check.length() ==0 || name.length() ==0 || phone.length()==0 || email.length() ==0){
+                        Toast.makeText(act,"입력되지 않은 정보를 입력해주세요.", Toast.LENGTH_LONG).show();
                     }
 
+                    else if( id.length()<4){
+                        Toast.makeText(act,"아이디는 최소 5자리 이상이어야 합니다.", Toast.LENGTH_LONG).show();
+                    }
+
+                    else if( !(pw.equals(pw_check)) ){
+                        Toast.makeText(act,"비밀번호가 일치하지 않습니다.", Toast.LENGTH_LONG).show();
+                    }
+
+                    else if ( (new DupInfoCheck().execute(new URL_make("check_id").makeURL(), id, "ID").get()).equals(id)){
+                        Toast.makeText(act,"중복된 아이디가 이미 존재합니다.", Toast.LENGTH_LONG).show();
+                    }
+
+                    else if( (new DupInfoCheck().execute(new URL_make("check_email").makeURL(), email, "Email").get()).equals(email) ){
+                        Toast.makeText(act,"중복된 email 이 이미 존재합니다.", Toast.LENGTH_LONG).show();
+                    }
+
+                    else if ( (new DupInfoCheck().execute(new URL_make("check_tel").makeURL(), phone, "Tel").get()).equals(phone) ){
+                        Toast.makeText(act,"중복된 phone 이 이미 존재합니다.", Toast.LENGTH_LONG).show();
+                    }
+
+                    else{
+
+                        URL_make url_make = new URL_make("add_user");
+                        String inputURL = url_make.makeURL();
+                        String response = new AddUserInfoToServer().execute(inputURL, id, pw, name, phone, email).get();
+
+                        //서버에서 받아온 값의 유효성 검증
+                        if(response.equals("1")){
+                            Toast.makeText(act,"참 잘했어요.", Toast.LENGTH_LONG).show();
+                        }
+                        else{
+                            Toast.makeText(act,"error check to server.", Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+
+
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
+
             }
         });
 
@@ -149,7 +167,7 @@ public class Frag_signin extends Fragment implements MainActivity.onKeyBackPress
 
                 OutputStream os = con.getOutputStream();
                 BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
-                bw.write("UserID="+params[1]+"&UserPW="+params[2]+"&UserName="+params[3]+"&UserPhone="+params[4]+"&UserEmail="+params[5]);
+                bw.write("UserID="+params[1]+"&UserPW="+params[2]+"&UserName="+params[3]+"&UserTel="+params[4]+"&UserEmail="+params[5]);
                 bw.flush();
                 bw.close();
 
@@ -167,6 +185,50 @@ public class Frag_signin extends Fragment implements MainActivity.onKeyBackPress
             } catch (MalformedURLException e) { //url error
                 e.printStackTrace();
             } catch (IOException e) { // http url connection
+                e.printStackTrace();
+            }
+            return output.toString();
+        }
+    }
+
+    public class DupInfoCheck extends AsyncTask<String, Void, String>{
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            StringBuilder output = new StringBuilder();
+
+            try {
+                URL url = new URL(params[0]);
+                HttpURLConnection con = (HttpURLConnection)url.openConnection();
+
+                con.setRequestMethod("POST");
+                con.setDoInput(true);
+                con.setDoOutput(true);
+                DataOutputStream dos = new DataOutputStream(con.getOutputStream());
+
+                if(params[2].equals("ID"))
+                    dos.writeBytes("UserID="+params[1]);
+                else if(params[2].equals("Email"))
+                    dos.writeBytes("UserEmail="+params[1]);
+                else
+                    dos.writeBytes("UserTel="+params[1]);
+                dos.flush();
+                dos.close();
+
+                InputStreamReader is = new InputStreamReader(con.getInputStream());
+                BufferedReader reader = new BufferedReader(is);
+                String results = "";
+
+                while(true){
+                    results = reader.readLine();
+                    if(results == null){
+                        break;
+                    }output.append(results);
+                }
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
             return output.toString();
