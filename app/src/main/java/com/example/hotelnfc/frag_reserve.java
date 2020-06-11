@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
@@ -41,27 +42,34 @@ public class frag_reserve extends Fragment {
 
     Button reserve_room_button;
 
+    MainActivity mainActivity;
+
     @SuppressLint("ResourceAsColor")
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frag_reserve, null);
 
         reserve_room_button = view.findViewById(R.id.reserve_room_button);
 
+        mainActivity = (MainActivity) getActivity();
+
+        final FragmentManager fragmentManager = mainActivity.getSupportFragmentManager();
+
         reserve_room_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                frag_reserve_room frag_reserve_room = new frag_reserve_room();
-//                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-//                ((FragmentTransaction) fragmentTransaction).replace(R.id.content_fragment, frag_reserve_room);
-//                fragmentTransaction.commit();
 
-                Bundle bundle = new Bundle();
-                bundle.putString("stayDay", result);
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                Frag_nfc frag_nfc = new Frag_nfc();
-                frag_nfc.setArguments(bundle);
-                transaction.replace(R.id.content_fragment, frag_nfc);
-                transaction.commit();
+                frag_reserve_room frag_reserve_room = new frag_reserve_room();
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentManager.beginTransaction().replace(R.id.content_fragment, frag_reserve_room, null).addToBackStack(null).commit();
+                fragmentTransaction.commit();
+
+//                Bundle bundle = new Bundle();
+//                bundle.putString("stayDay", result);
+//                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                Frag_nfc frag_nfc = new Frag_nfc();
+//                frag_nfc.setArguments(bundle);
+//                transaction.replace(R.id.content_fragment, frag_nfc);
+//                transaction.commit();
             }
         });
 
