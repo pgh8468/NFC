@@ -182,6 +182,8 @@ public class Frag_signin extends Fragment implements MainActivity.onKeyBackPress
                     }output.append(results);
                 }
 
+                con.disconnect();
+
             } catch (MalformedURLException e) { //url error
                 e.printStackTrace();
             } catch (IOException e) { // http url connection
@@ -226,6 +228,8 @@ public class Frag_signin extends Fragment implements MainActivity.onKeyBackPress
                         break;
                     }output.append(results);
                 }
+
+                con.disconnect();
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {

@@ -23,6 +23,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.telephony.PhoneStateListener;
@@ -39,6 +40,15 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -58,6 +68,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = getIntent();
+        login_id = intent.getExtras().getString("loginID");
+
+        if(!(login_id == null)){
+            try {
+                String response = new GetBookInfo().execute().get();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+
+        }
 
         Frag_login = new Frag_login();
         Frag_nfc = new Frag_nfc();
@@ -154,6 +179,46 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             } else {
                 super.onBackPressed();
             }
+        }
+    }
+
+    public class GetBookInfo extends AsyncTask<String, Void, String>{
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            StringBuilder output = new StringBuilder();
+
+            try {
+                URL url = new URL(params[0]);
+                HttpURLConnection con = (HttpURLConnection) url.openConnection();
+
+                con.setRequestMethod("POST");
+                con.setDoInput(true);
+                con.setDoInput(true);
+                DataOutputStream dos = new DataOutputStream(con.getOutputStream());
+                dos.writeBytes("UserID="+params[1]);
+                dos.flush();
+                dos.close();
+
+                InputStreamReader is = new InputStreamReader(con.getInputStream());
+                BufferedReader reader = new BufferedReader(is);
+                String results = "";
+
+                while(true){
+                    results = reader.readLine();
+                    if(results == null){
+                        break;
+                    }output.append(results);
+                }
+
+                con.disconnect();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
         }
     }
 }
