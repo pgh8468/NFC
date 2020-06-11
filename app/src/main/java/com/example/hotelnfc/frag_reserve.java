@@ -30,7 +30,7 @@ public class frag_reserve extends Fragment {
     String Firstday, Lastday, result;
     private static final String stay ="result";
 
-    final OneDayDecorator oneDayDecorator = new OneDayDecorator();
+    OneDayDecorator oneDayDecorator = new OneDayDecorator();
 
     public frag_reserve() {
     }
