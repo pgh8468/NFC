@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FragmentTransaction fragmentTransaction;
 
     String login_id;
+    int flag = 0;
 
     Fragment Frag_login, Frag_nfc, frag_reserve, frag_reserve_room, Frag_singin;
 
@@ -69,19 +70,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent = getIntent();
-        login_id = intent.getExtras().getString("loginID");
+        if( flag!=0){
+            Intent intent = getIntent();
 
-        if(!(login_id == null)){
-            try {
-                String response = new GetBookInfo().execute().get();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            if(intent.getExtras().getString("loginID") != null){
+                login_id = intent.getExtras().getString("loginID");
             }
-
-
         }
 
         Frag_login = new Frag_login();
@@ -144,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         else if (id == R.id.menu_signin) {
             if (login_id == null) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, new Frag_signin()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, new Frag_signin(), null).addToBackStack(null).commit();
             } else {
                 //menuItem.setVisible(false);
             }

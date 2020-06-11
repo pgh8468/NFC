@@ -23,12 +23,16 @@ public class frag_check_reserve extends Fragment {
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
 
-
-
     View view;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.frag_reserve, null);
+        view = inflater.inflate(R.layout.frag_check_reserve, null);
 
         check_room_img = view.findViewById(R.id.check_room_img);
         check_checkin = view.findViewById(R.id.check_checkin);
@@ -37,28 +41,5 @@ public class frag_check_reserve extends Fragment {
         return view;
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
-        fragmentManager = getFragmentManager();
-        fragmentTransaction = fragmentManager.beginTransaction();
-
-        fragmentTransaction.addToBackStack(null);
-
-        requireActivity().getOnBackPressedDispatcher().addCallback(this, onBackPressedCallback);
-
-    }
-
-    private final OnBackPressedCallback onBackPressedCallback = new OnBackPressedCallback(true) {
-        @Override
-        public void handleOnBackPressed() {
-
-        }
-    };
-
-    public void onDetach() {
-        super.onDetach();
-        onBackPressedCallback.remove();
-    }
 }

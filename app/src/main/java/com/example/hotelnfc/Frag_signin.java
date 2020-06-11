@@ -34,7 +34,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.ExecutionException;
 
-public class Frag_signin extends Fragment implements MainActivity.onKeyBackPressedListener {
+public class Frag_signin extends Fragment {
 
     View view;
     //TextInputLayout - 레이아웃 구성
@@ -238,20 +238,6 @@ public class Frag_signin extends Fragment implements MainActivity.onKeyBackPress
             return output.toString();
         }
     }
-
-    @Override
-    public void onBackKey() {
-        MainActivity mainActivity = (MainActivity) getActivity();
-        mainActivity.setOnKeyBackPressedListener(null);
-        mainActivity.onBackPressed();
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        ((MainActivity)context).setOnKeyBackPressedListener(this);
-    }
-
 }
 
 
