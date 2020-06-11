@@ -31,6 +31,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -86,6 +87,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
 
+//        requestWindowFeature(Window.FEATURE_NO_TITLE); // 위에 뜨는 점 3개 없애는것
+
+
         //NFC 화면을 첫화면으로 고정
         getSupportFragmentManager().beginTransaction().add(R.id.content_fragment, new Frag_nfc()).commit();
     }
@@ -102,21 +106,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (id == R.id.reserve) {
             getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, new frag_reserve(), null).addToBackStack(null).commit();
-        } else if (id == R.id.check_reserve) {
+        }
+        else if (id == R.id.check_reserve) {
             getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, new frag_check_reserve(), null).addToBackStack(null).commit();
-        } else if (id == R.id.menu_login) {
+        }
+        else if (id == R.id.menu_login) {
             if (login_id == null) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, new Frag_login(), null).addToBackStack(null).commit();
             } else {
-                //menuItem.setVisible(false);
+                menuItem.setVisible(false);
             }
-        } else if (id == R.id.menu_signin) {
+        }
+        else if (id == R.id.menu_signin) {
             if (login_id == null) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, new Frag_signin()).commit();
             } else {
                 //menuItem.setVisible(false);
             }
-        } else if (id == R.id.facility_guide) {
+        }
+        else if (id == R.id.facility_guide) {
             Intent intent = new Intent(this, NfcIssueKey.class);
             startActivity(intent);
         }
@@ -142,6 +150,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else {
             if(getSupportFragmentManager().getBackStackEntryCount() == 0) {
                 Toast.makeText(this, "씨발아 끄고싶은 한번 더눌러", Toast.LENGTH_SHORT).show();
+                finish();
             } else {
                 super.onBackPressed();
             }
