@@ -2,6 +2,7 @@ package com.example.hotelnfc;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,10 +21,14 @@ import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
 import com.prolificinteractive.materialcalendarview.OnRangeSelectedListener;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 public class frag_reserve extends Fragment {
+
+    String Firstday, Lastday, result;
+    private static final String stay ="result";
 
     final OneDayDecorator oneDayDecorator = new OneDayDecorator();
 
@@ -45,10 +50,18 @@ public class frag_reserve extends Fragment {
         reserve_room_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                frag_reserve_room frag_reserve_room = new frag_reserve_room();
-                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                ((FragmentTransaction) fragmentTransaction).replace(R.id.content_fragment, frag_reserve_room);
-                fragmentTransaction.commit();
+//                frag_reserve_room frag_reserve_room = new frag_reserve_room();
+//                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+//                ((FragmentTransaction) fragmentTransaction).replace(R.id.content_fragment, frag_reserve_room);
+//                fragmentTransaction.commit();
+
+                Bundle bundle = new Bundle();
+                bundle.putString("stayDay", result);
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                Frag_nfc frag_nfc = new Frag_nfc();
+                frag_nfc.setArguments(bundle);
+                transaction.replace(R.id.content_fragment, frag_nfc);
+                transaction.commit();
             }
         });
 
@@ -90,31 +103,20 @@ public class frag_reserve extends Fragment {
             @Override
             public void onRangeSelected(@NonNull MaterialCalendarView widget, @NonNull List<CalendarDay> dates) {
 
+
+                Log.e("check dates", Integer.toString(dates.size()));
+                Log.e("first last", dates.get(0).toString()+"/"+dates.get(dates.size()-1).toString());
+
+                Firstday = dates.get(0).toString(); //체크인 날짜
+                Lastday = dates.get(dates.size()-1).toString(); //체크아웃 날짜
+                result = Integer.toString(dates.size());
             }
         });
 
+
+
         return view;
     }
-
-//    public void SelectDate(Date date) {
-//        Calendar startCalendar = new GregorianCalendar();
-//        startCalendar.setTime(date);
-//        Calendar endCalendar = calendarView.getCurrentDate().getCalendar();
-//
-//        calendarView.setSelectedDate(date);
-//
-//        int diffyear = endCalendar.get(Calendar.YEAR) - startCalendar.get(Calendar.YEAR);
-//        int diffMonth = diffyear * 12 + endCalendar.get(Calendar.MONTH) - startCalendar.get(Calendar.MONTH);
-//        int monthsToMove = Math.abs(diffMonth);
-//
-//        for (int i = 0; i <monthsToMove; i++) {
-//            if (diffMonth < 0) {
-//                calendarView.goToNext();
-//            } else if (diffMonth > 0) {
-//                calendarView.goToPrevious();
-//            }
-//        }
-//    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

@@ -17,6 +17,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class Frag_nfc extends Fragment {
 
@@ -26,7 +28,12 @@ public class Frag_nfc extends Fragment {
     NfcAdapter nfcAdapter;
     String logined_id = null;
 
+    String resultday;
+
     MainActivity mainActivity = new MainActivity();
+
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frag_nfc, null);
@@ -36,6 +43,12 @@ public class Frag_nfc extends Fragment {
         btn_issue_key = view.findViewById(R.id.btn_issue_key);
 
         nfcAdapter = NfcAdapter.getDefaultAdapter(getActivity());
+
+        if (getArguments() != null) {
+            String stayDay = getArguments().getString("stayDay");
+            Log.e("d-day", stayDay);
+            nfc_booked.setText(stayDay);
+        }
 
         if(nfcAdapter == null){
             Toast.makeText(getActivity(), "nfc 안킨거 아니냐?", Toast.LENGTH_LONG).show();
@@ -50,27 +63,22 @@ public class Frag_nfc extends Fragment {
 
                 logined_id = "testID";
 
-                if(logined_id != null){
+                if (logined_id != null) {
                     Intent intent = new Intent(getActivity(), NfcIssueKey.class);
                     intent.putExtra("logined_id", logined_id);
                     startActivity(intent);
-                }
-                else {
-                    Toast.makeText(getActivity(),"로그인이 필요한 서비스입니다.",Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getActivity(), "로그인이 필요한 서비스입니다.", Toast.LENGTH_LONG).show();
                 }
 
             }
         });
-
-//        Bundle bundle = getArguments();
-  //      String text = bundle.getString("a");
-    //    TextView txt_logined_book_info = view.findViewById(R.id.txt_logined_book_info);
-      //  txt_logined_book_info.setText(text);
 
         return view;
     }
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 }
