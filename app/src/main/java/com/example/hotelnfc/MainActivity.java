@@ -36,6 +36,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -64,6 +65,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     Fragment Frag_login, Frag_nfc, frag_reserve, frag_reserve_room, Frag_singin;
 
+    TextView client_name;
+
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +90,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.drawerlayout);
         toolbar = findViewById(R.id.toolbar);
         navigationView = findViewById(R.id.navigationview);
+
+        client_name = navigationView.findViewById(R.id.client_name);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
@@ -125,55 +130,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (id == R.id.reserve) {
             getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, new frag_reserve(), null).addToBackStack(null).commit();
-        }
-        else if (id == R.id.check_reserve) {
+        } else if (id == R.id.check_reserve) {
             getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, new frag_check_reserve(), null).addToBackStack(null).commit();
-        }
-        else if (id == R.id.menu_login) {
+        } else if (id == R.id.menu_login) {
             if (login_id == null) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, new Frag_login(), null).addToBackStack(null).commit();
             } else {
                 menuItem.setVisible(false);
             }
-        }
-        else if (id == R.id.menu_signin) {
+        } else if (id == R.id.menu_signin) {
             if (login_id == null) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, new Frag_signin(), null).addToBackStack(null).commit();
             } else {
                 //menuItem.setVisible(false);
             }
-        }
-        else if (id == R.id.facility_guide) {
+        } else if (id == R.id.facility_guide) {
             Intent intent = new Intent(this, NfcIssueKey.class);
             startActivity(intent);
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    public interface onKeyBackPressedListener {
-        void onBackKey();
-    }
-
-    private onKeyBackPressedListener mOnKeyBackPressedListener;
-
-    public void setOnKeyBackPressedListener(onKeyBackPressedListener listener) {
-        mOnKeyBackPressedListener = listener;
-    }
-
-    @Override
-    public void onBackPressed() {
-        if(mOnKeyBackPressedListener != null) {
-            mOnKeyBackPressedListener.onBackKey();
-        } else {
-            if(getSupportFragmentManager().getBackStackEntryCount() == 0) {
-                Toast.makeText(this, "끄고싶은 한번 더눌러", Toast.LENGTH_SHORT).show();
-                finish();
-            } else {
-                super.onBackPressed();
-            }
-        }
     }
 
     public class GetBookInfo extends AsyncTask<String, Void, String>{

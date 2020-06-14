@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -34,6 +35,9 @@ public class Frag_login extends Fragment {
     TextInputEditText textInputEditTextID, textInputEditTextPW;
     Button button_signin, button_signup, button_find;
 
+    MainActivity mainActivity = (MainActivity) getActivity();
+    TextView client_name;
+
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frag_login, null);
 
@@ -46,6 +50,8 @@ public class Frag_login extends Fragment {
         button_signin = view.findViewById(R.id.button_signin);
         button_signup = view.findViewById(R.id.button_signup);
         button_find = view.findViewById(R.id.button_find);
+
+        client_name = mainActivity.findViewById(R.id.client_name);
 
         button_signin.setOnClickListener(new View.OnClickListener() {
             @Override

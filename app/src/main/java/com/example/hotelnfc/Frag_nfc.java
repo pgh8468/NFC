@@ -42,6 +42,10 @@ public class Frag_nfc extends Fragment {
         nfc_detail_booked = view.findViewById(R.id.txt_logined_book_info);
         btn_issue_key = view.findViewById(R.id.btn_issue_key);
 
+        if(logined_id == null){
+            nfc_booked.setText("hello\n"+"world");
+        }
+
         nfcAdapter = NfcAdapter.getDefaultAdapter(getActivity());
 
         if (getArguments() != null) {
@@ -54,7 +58,6 @@ public class Frag_nfc extends Fragment {
             Toast.makeText(getActivity(), "nfc 안킨거 아니냐?", Toast.LENGTH_LONG).show();
             String android_id = Settings.Secure.getString(getActivity().getContentResolver(),Settings.Secure.ANDROID_ID);
             Log.e("check id",android_id);
-
         }
 
         btn_issue_key.setOnClickListener(new View.OnClickListener() {

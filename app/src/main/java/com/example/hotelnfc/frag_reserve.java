@@ -63,13 +63,10 @@ public class frag_reserve extends Fragment {
             @Override
             public void onClick(View v) {
 
-//                Bundle bundle = new Bundle();
-//                bundle.putString("stayDay", result);
-//                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-//                Frag_nfc frag_nfc = new Frag_nfc();
-//                frag_nfc.setArguments(bundle);
-//                transaction.replace(R.id.content_fragment, frag_nfc);
-//                transaction.commit();
+                Frag_nfc frag_nfc = new Frag_nfc();
+                Bundle bundle = new Bundle(1);
+                bundle.putString("stayDay", result);
+                frag_nfc.setArguments(bundle);
 
                 if(Firstday == null){
                     Snackbar.make(v,"체크인 날짜를 지정해주세요", Snackbar.LENGTH_INDEFINITE ).setAction("확인", new View.OnClickListener() {
@@ -180,8 +177,6 @@ public class frag_reserve extends Fragment {
 
             }
         });
-
-
 
         return view;
     }

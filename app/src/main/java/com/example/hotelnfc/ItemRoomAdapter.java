@@ -9,6 +9,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -19,9 +21,23 @@ public class ItemRoomAdapter extends RecyclerView.Adapter<ItemRoomAdapter.Custom
     private ArrayList<Item_room> arrayList;
     RecyclerView recyclerView;
 
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
+    MainActivity mainActivity;
+
+    ItemClick itemClick;
+
     public ItemRoomAdapter(Context context, ArrayList<Item_room> arrayList) {
         this.context = context;
         this.arrayList = arrayList;
+    }
+
+    public interface ItemClick {
+        void OnClick(View v, int position);
+    }
+
+    public void setItemClick(ItemClick itemClick) {
+        this.itemClick = itemClick;
     }
 
     //리스트뷰가 생성될때의 생명주기
@@ -37,7 +53,7 @@ public class ItemRoomAdapter extends RecyclerView.Adapter<ItemRoomAdapter.Custom
 
     //실제 추가될때의 생명주기
     @Override
-    public void onBindViewHolder(@NonNull final ItemRoomAdapter.CustomViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ItemRoomAdapter.CustomViewHolder holder, final int position) {
 
         holder.room_picture.setImageResource(arrayList.get(position).getRoom_picture());
         holder.room_class.setText(arrayList.get(position).getRoom_class());
@@ -45,13 +61,14 @@ public class ItemRoomAdapter extends RecyclerView.Adapter<ItemRoomAdapter.Custom
 
         holder.itemView.setTag(position);
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String curName = holder.room_class.getText().toString();
-                Toast.makeText(v.getContext(), curName, Toast.LENGTH_SHORT).show();
-            }
-        });
+       holder.itemView.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               if (itemClick != null) {
+                   itemClick.OnClick(v, position);
+               }
+           }
+       });
     }
 
     @Override

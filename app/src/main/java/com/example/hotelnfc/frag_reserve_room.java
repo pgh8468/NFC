@@ -1,7 +1,7 @@
 package com.example.hotelnfc;
 
-import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +22,11 @@ public class frag_reserve_room extends Fragment {
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
 
+    MainActivity mainActivity;
+
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
+
     public frag_reserve_room() {}
 
     View view;
@@ -38,12 +43,23 @@ public class frag_reserve_room extends Fragment {
 
         recyclerView.setAdapter(itemRoomAdapter);
 
-        //arrayList2 = new ArrayList<Item_room>();
+        mainActivity = (MainActivity) getActivity();
 
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentManager = mainActivity.getSupportFragmentManager();
 
-        fragmentTransaction.addToBackStack(null);
+        //원하는 객실 클릭리스너
+        itemRoomAdapter.setItemClick(new ItemRoomAdapter.ItemClick() {
+            @Override
+            public void OnClick(View v, int position) {
+                Log.e("click?"+position, arrayList.get(position).getRoom_class());
+
+                Frag_room_setting frag_room_setting = new Frag_room_setting();
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentManager.beginTransaction().replace(R.id.content_fragment, frag_room_setting, null).addToBackStack(null).commit();
+                fragmentTransaction.commit();
+
+            }
+        });
 
         return view;
     }
