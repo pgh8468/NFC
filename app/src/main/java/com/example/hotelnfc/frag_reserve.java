@@ -1,6 +1,7 @@
 package com.example.hotelnfc;
 
 import android.annotation.SuppressLint;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,12 +24,20 @@ import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
 import com.prolificinteractive.materialcalendarview.OnRangeSelectedListener;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class frag_reserve extends Fragment {
 
@@ -106,6 +115,8 @@ public class frag_reserve extends Fragment {
                         }
 
                         else{
+//                            값 넘어가는거 확인함
+//                            new TestInputDate().execute(new URL_make("and_date").makeURL(), Firstday,Lastday).get();
 
                             frag_reserve_room frag_reserve_room = new frag_reserve_room();
                             FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
@@ -115,10 +126,12 @@ public class frag_reserve extends Fragment {
 
                     } catch (ParseException e) {
                         e.printStackTrace();
-                    }
-
-
-
+                    } 
+//                    catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    } catch (ExecutionException e) {
+//                        e.printStackTrace();
+//                    }
 
 
                 }
@@ -186,5 +199,44 @@ public class frag_reserve extends Fragment {
         super.onCreate(savedInstanceState);
 
 
+    }
+
+    public class TestInputDate extends AsyncTask<String, Void, String>{
+
+        @Override
+        protected String doInBackground(String... params) {
+            StringBuilder output = new StringBuilder();
+
+            try {
+                URL url = new URL(params[0]);
+                HttpURLConnection con = (HttpURLConnection) url.openConnection();
+
+                con.setRequestMethod("POST");
+                con.setDoInput(true);
+                con.setDoOutput(true);
+                DataOutputStream dos = new DataOutputStream(con.getOutputStream());
+                dos.writeBytes("start="+params[1]+"&end="+params[2]);
+                dos.flush();
+                dos.close();
+
+                InputStreamReader is = new InputStreamReader(con.getInputStream());
+                BufferedReader reader = new BufferedReader(is);
+                String results = "";
+
+                while(true){
+                    results = reader.readLine();
+                    if(results == null){
+                        break;
+                    }output.append(results);
+                }
+
+                con.disconnect();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return output.toString();
+        }
     }
 }
