@@ -33,6 +33,9 @@ public class Frag_room_setting extends Fragment {
     private String mParam2;
     private String mParam3;
 
+    String StartDay;
+    String LastDay;
+
     ImageView setting_img;
     TextView setting_checkin, setting_checkout, notify_usage;
     RadioGroup radioGroup;
@@ -45,6 +48,11 @@ public class Frag_room_setting extends Fragment {
 
     public Frag_room_setting() {
         // Required empty public constructor
+    }
+    public Frag_room_setting(String StartDay, String LastDay){
+        this.StartDay = StartDay;
+        this.LastDay = LastDay;
+
     }
 
     /**

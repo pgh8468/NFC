@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FragmentTransaction fragmentTransaction;
 
     String login_id;
-    int flag = 0;
 
     Fragment Frag_login, Frag_nfc, frag_reserve, frag_reserve_room, Frag_singin;
 
@@ -70,14 +69,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        if( flag!=0){
-            Intent intent = getIntent();
-
-            if(intent.getExtras().getString("loginID") != null){
-                login_id = intent.getExtras().getString("loginID");
-            }
-        }
 
         Frag_login = new Frag_login();
         Frag_nfc = new Frag_nfc();
@@ -105,6 +96,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         // load default fragment
         fragmentManager = getSupportFragmentManager();
+
         fragmentTransaction = fragmentManager.beginTransaction();
 
 //        requestWindowFeature(Window.FEATURE_NO_TITLE); // 위에 뜨는 점 3개 없애는것

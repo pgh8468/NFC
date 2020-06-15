@@ -47,9 +47,6 @@ public class frag_reserve extends Fragment {
 
     OneDayDecorator oneDayDecorator = new OneDayDecorator();
 
-    public frag_reserve() {
-    }
-
     View view;
 
     MaterialCalendarView calendarView;
@@ -118,7 +115,12 @@ public class frag_reserve extends Fragment {
 //                            값 넘어가는거 확인함
 //                            new TestInputDate().execute(new URL_make("and_date").makeURL(), Firstday,Lastday).get();
 
-                            frag_reserve_room frag_reserve_room = new frag_reserve_room();
+                            Bundle bun = new Bundle();
+                            bun.putString("FirstDay",Firstday);
+                            bun.putString("LastDay",Lastday);
+
+
+                            frag_reserve_room frag_reserve_room = new frag_reserve_room(Firstday,Lastday);
                             FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                             fragmentManager.beginTransaction().replace(R.id.content_fragment, frag_reserve_room, null).addToBackStack(null).commit();
                             fragmentTransaction.commit();
@@ -197,7 +199,6 @@ public class frag_reserve extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
     }
 
