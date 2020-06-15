@@ -7,8 +7,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,7 +34,12 @@ public class Frag_room_setting extends Fragment {
     private String mParam3;
 
     ImageView setting_img;
-    TextView setting_checkin, setting_checkout;
+    TextView setting_checkin, setting_checkout, notify_usage;
+    RadioGroup radioGroup;
+    RadioButton radioButton,radioButton2,radioButton3,radioButton4;
+    TextInputLayout textInputLayout_one, textInputLayout_two, textInputLayout_three, textInputLayout_four;
+    TextInputEditText textInputEditText_one, textInputEditText_two, textInputEditText_three, textInputEditText_four;
+    Button reserve_finish_button;
 
     View view;
 
@@ -78,7 +89,27 @@ public class Frag_room_setting extends Fragment {
 
     void Findid() {
         setting_img = view.findViewById(R.id.setting_img);
+
         setting_checkin = view.findViewById(R.id.setting_checkin);
         setting_checkout = view.findViewById(R.id.setting_checkout);
+        notify_usage = view.findViewById(R.id.notify_usage);
+
+        radioGroup = view.findViewById(R.id.radioGroup);
+        radioButton = view.findViewById(R.id.radioButton);
+        radioButton2 = view.findViewById(R.id.radioButton2);
+        radioButton3 = view.findViewById(R.id.radioButton3);
+        radioButton4 = view.findViewById(R.id.radioButton4);
+
+        textInputLayout_one = view.findViewById(R.id.textInputLayout_one);
+        textInputLayout_two = view.findViewById(R.id.textInputLayout_two);
+        textInputLayout_three = view.findViewById(R.id.textInputLayout_three);
+        textInputLayout_four = view.findViewById(R.id.textInputLayout_four);
+
+        textInputEditText_one = view.findViewById(R.id.textInputEditText_one);
+        textInputEditText_two = view.findViewById(R.id.textInputEditText_two);
+        textInputEditText_three = view.findViewById(R.id.textInputEditText_three);
+        textInputEditText_four = view.findViewById(R.id.textInputEditText_four);
+
+        reserve_finish_button = view.findViewById(R.id.reserve_finish_button);
     }
 }

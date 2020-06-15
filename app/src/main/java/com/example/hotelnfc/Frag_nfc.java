@@ -42,9 +42,9 @@ public class Frag_nfc extends Fragment {
         nfc_detail_booked = view.findViewById(R.id.txt_logined_book_info);
         btn_issue_key = view.findViewById(R.id.btn_issue_key);
 
-        if(logined_id == null){
-            nfc_booked.setText("hello\n"+"world");
-        }
+//        if(logined_id == null){
+//            nfc_booked.setText("hello\n"+"world");
+//        }
 
         nfcAdapter = NfcAdapter.getDefaultAdapter(getActivity());
 
