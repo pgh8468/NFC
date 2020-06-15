@@ -1,78 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="10">
+    android:background="#000000">
 
     <ImageView
-        android:id="@+id/check_room_img"
+        android:id="@+id/check_img"
         android:layout_width="match_parent"
         android:layout_height="210dp"
-        android:layout_weight="4"
-        android:src="@drawable/first" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/first" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
         android:orientation="horizontal"
-        android:layout_weight="1"
-        android:weightSum="2">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/check_img">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:weightSum="3"
-            android:layout_weight="1">
+            android:orientation="horizontal"
+            android:weightSum="2">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="체크인"
-                android:textSize="20dp"
-                android:layout_marginLeft="15dp"
-                android:fontFamily="@font/gmarketsansttfbold"
-                android:layout_weight="2"/>
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:weightSum="2">
 
-            <TextView
-                android:id="@+id/check_checkin"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/gmarketsansttfmedium"
+                    android:gravity="start"
+                    android:text="체크인"
+                    android:textColor="#ffffff"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/checking_checkin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:fontFamily="@font/gmarketsansttfmedium"
+                    android:gravity="end"
+                    android:text="2020-06-15"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fontFamily="@font/gmarketsansttfmedium"
-                android:layout_marginLeft="10dp"
-                android:gravity="center"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/gmarketsansttfmedium"
+                    android:gravity="start"
+                    android:text="체크아웃"
+                    android:textColor="#ffffff"
+                    android:textSize="12sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:weightSum="3"
-            android:layout_weight="1">
+                <TextView
+                    android:id="@+id/checking_checkout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:fontFamily="@font/gmarketsansttfmedium"
+                    android:gravity="end"
+                    android:text="2020-06-15"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="체크아웃"
-                android:textSize="20dp"
-                android:layout_marginLeft="15dp"
-                android:fontFamily="@font/gmarketsansttfbold"
-                android:layout_weight="2"/>
-
-            <TextView
-                android:id="@+id/check_checkout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:fontFamily="@font/gmarketsansttfmedium"
-                android:layout_weight="1"/>
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="TextView"
+        android:textColor="#ffffff"
+        android:textSize="8dp"
+        android:fontFamily="@font/gmarketsnasttflight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
+    <TextView
+        android:id="@+id/client_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:text="예약자 번호"
+        android:textSize="20sp"
+        android:textColor="#ffffff"
+        android:fontFamily="@font/gmarketsansttfmedium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/client_two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/gmarketsansttfmedium"
+        android:text="추가인원1"
+        android:textSize="20sp"
+        android:textColor="#ffffff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/client_one" />
+
+    <TextView
+        android:id="@+id/client_three"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="추가인원2"
+        android:textSize="20sp"
+        android:textColor="#ffffff"
+        android:fontFamily="@font/gmarketsansttfmedium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/client_two" />
+
+    <TextView
+        android:id="@+id/client_four"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="추가인원3"
+        android:textSize="20sp"
+        android:textColor="#ffffff"
+        android:fontFamily="@font/gmarketsansttfmedium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/client_three" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,11 +17,8 @@ import android.widget.TextView;
 
 public class frag_check_reserve extends Fragment {
 
-    private ImageView check_room_img;
-    private TextView check_checkin, chech_checkout;
-
-    FragmentManager fragmentManager;
-    FragmentTransaction fragmentTransaction;
+    ImageView check_img;
+    TextView checking_checkin, checking_checkout, client_one, client_two, client_three, client_four, textView;
 
     View view;
 
@@ -34,12 +31,27 @@ public class frag_check_reserve extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frag_check_reserve, null);
 
-        check_room_img = view.findViewById(R.id.check_room_img);
-        check_checkin = view.findViewById(R.id.check_checkin);
-        chech_checkout = view.findViewById(R.id.check_checkout);
+        checkId(); //findViewById
+
+        textView.setText("객실 이용객 번호입니다.\n" + "해당 번호를 가진 핸드폰으로 객실 이용이 가능합니다.");
 
         return view;
     }
 
+    void checkId() {
+        check_img = view.findViewById(R.id.check_img);
+
+        //체크인 체크아웃
+        checking_checkin = view.findViewById(R.id.checking_checkin);
+        checking_checkout = view.findViewById(R.id.checking_checkout);
+
+        //예약했을 때 함께 추가한 객실 이용객 번호
+        client_one = view.findViewById(R.id.client_one);
+        client_two = view.findViewById(R.id.client_two);
+        client_three = view.findViewById(R.id.client_three);
+        client_four = view.findViewById(R.id.client_four);
+
+        textView = view.findViewById(R.id.textView); //설명하는 Text
+    }
 
 }

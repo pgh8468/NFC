@@ -2,8 +2,12 @@ package com.example.hotelnfc;
 
 import android.os.Bundle;
 
+import androidx.core.app.TaskStackBuilder;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +17,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -43,6 +48,9 @@ public class Frag_room_setting extends Fragment {
     TextInputLayout textInputLayout_one, textInputLayout_two, textInputLayout_three, textInputLayout_four;
     TextInputEditText textInputEditText_one, textInputEditText_two, textInputEditText_three, textInputEditText_four;
     Button reserve_finish_button;
+
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
 
     View view;
 
@@ -83,7 +91,6 @@ public class Frag_room_setting extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
             mParam3 = getArguments().getString(ARG_PARAM3);
         }
-
     }
 
     @Override
@@ -91,6 +98,36 @@ public class Frag_room_setting extends Fragment {
         view = inflater.inflate(R.layout.fragment_frag_room_setting, null);
 
         Findid(); //findviewbyid
+
+        //객실 이용객 수에 따른 번호 입력창 visibility 설정
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == 0) {
+                    Snackbar.make(view,"인원 수를 선택해주세요.", Snackbar.LENGTH_SHORT).show();
+                } else if (checkedId == R.id.radioButton) { //1인
+                    textInputLayout_one.setVisibility(view.VISIBLE);
+                    textInputLayout_two.setVisibility(view.GONE);
+                    textInputLayout_three.setVisibility(view.GONE);
+                    textInputLayout_four.setVisibility(view.GONE);
+                } else if (checkedId == R.id.radioButton2) { //2인
+                    textInputLayout_one.setVisibility(view.VISIBLE);
+                    textInputLayout_two.setVisibility(view.VISIBLE);
+                    textInputLayout_three.setVisibility(view.GONE);
+                    textInputLayout_four.setVisibility(view.GONE);
+                } else if (checkedId == R.id.radioButton3) { //3인
+                    textInputLayout_one.setVisibility(view.VISIBLE);
+                    textInputLayout_two.setVisibility(view.VISIBLE);
+                    textInputLayout_three.setVisibility(view.VISIBLE);
+                    textInputLayout_four.setVisibility(view.GONE);
+                } else if (checkedId == R.id.radioButton4) { //4인
+                    textInputLayout_one.setVisibility(view.VISIBLE);
+                    textInputLayout_two.setVisibility(view.VISIBLE);
+                    textInputLayout_three.setVisibility(view.VISIBLE);
+                    textInputLayout_four.setVisibility(view.VISIBLE);
+                }
+            }
+        });
 
         return view;
     }
