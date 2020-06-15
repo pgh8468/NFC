@@ -103,7 +103,7 @@
             android:textColor="#ffffff"
             android:fontFamily="@font/gmarketsansttfmedium"
             android:hint="Name"
-            android:drawableEnd="@drawable/ic_phone_black_24dp"/>
+            android:drawableEnd="@drawable/ic_perm_identity_black_24dp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
