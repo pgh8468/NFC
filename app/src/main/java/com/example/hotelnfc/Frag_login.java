@@ -36,7 +36,6 @@ public class Frag_login extends Fragment {
     TextInputEditText textInputEditTextID, textInputEditTextPW;
     Button button_signin, button_signup, button_find;
 
-    MainActivity mainActivity = (MainActivity) getActivity();
 
     Frag_login frag_login;
 

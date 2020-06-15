@@ -126,7 +126,7 @@ public class frag_reserve extends Fragment {
 
                     } catch (ParseException e) {
                         e.printStackTrace();
-                    } 
+                    }
 //                    catch (InterruptedException e) {
 //                        e.printStackTrace();
 //                    } catch (ExecutionException e) {
