@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +42,7 @@ public class Frag_room_setting extends Fragment {
 
     String StartDay;
     String LastDay;
+    int check_radio_btn;
 
     ImageView setting_img;
     TextView setting_checkin, setting_checkout, notify_usage;
@@ -110,11 +113,13 @@ public class Frag_room_setting extends Fragment {
                     textInputLayout_two.setVisibility(view.GONE);
                     textInputLayout_three.setVisibility(view.GONE);
                     textInputLayout_four.setVisibility(view.GONE);
+                    check_radio_btn = 2;
                 } else if (checkedId == R.id.radioButton2) { //2인
                     textInputLayout_one.setVisibility(view.VISIBLE);
                     textInputLayout_two.setVisibility(view.VISIBLE);
                     textInputLayout_three.setVisibility(view.GONE);
                     textInputLayout_four.setVisibility(view.GONE);
+                    check_radio_btn = 3;
                 } else if (checkedId == R.id.radioButton3) { //3인
                     textInputLayout_one.setVisibility(view.VISIBLE);
                     textInputLayout_two.setVisibility(view.VISIBLE);
@@ -125,7 +130,21 @@ public class Frag_room_setting extends Fragment {
                     textInputLayout_two.setVisibility(view.VISIBLE);
                     textInputLayout_three.setVisibility(view.VISIBLE);
                     textInputLayout_four.setVisibility(view.VISIBLE);
+                    check_radio_btn = 4;
                 }
+            }
+        });
+
+        setting_checkin.setText(StartDay);
+        setting_checkout.setText(LastDay);
+
+        reserve_finish_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String input_num1 = textInputEditText_one.getText().toString();
+
+
             }
         });
 
@@ -156,5 +175,95 @@ public class Frag_room_setting extends Fragment {
         textInputEditText_four = view.findViewById(R.id.textInputEditText_four);
 
         reserve_finish_button = view.findViewById(R.id.reserve_finish_button);
+
+        textInputLayout_one.setCounterEnabled(true);
+        textInputLayout_two.setCounterEnabled(true);
+        textInputLayout_three.setCounterEnabled(true);
+        textInputLayout_four.setCounterEnabled(true);
+
+        textInputLayout_one.setCounterMaxLength(13);
+        textInputLayout_two.setCounterMaxLength(13);
+        textInputLayout_three.setCounterMaxLength(13);
+        textInputLayout_four.setCounterMaxLength(13);
+
+        textInputEditText_one.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+
+            @Override
+            public void afterTextChanged(Editable input_num) {
+
+                if( !(input_num.toString().contains("-")) ){
+                    textInputLayout_one.setError("전화번호 양식에 맞게 기입해주세요");
+                }
+                else{
+                    textInputLayout_one.setError(null);
+                }
+
+            }
+        });
+
+        textInputEditText_two.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+
+            @Override
+            public void afterTextChanged(Editable input_num) {
+
+                if( !(input_num.toString().contains("-")) ){
+                    textInputLayout_two.setError("전화번호 양식에 맞게 기입해주세요");
+                }
+                else{
+                    textInputLayout_two.setError(null);
+                }
+
+            }
+        });
+
+        textInputEditText_three.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+
+            @Override
+            public void afterTextChanged(Editable input_num) {
+
+                if( !(input_num.toString().contains("-")) ){
+                    textInputLayout_three.setError("전화번호 양식에 맞게 기입해주세요");
+                }
+                else{
+                    textInputLayout_three.setError(null);
+                }
+
+            }
+        });
+
+        textInputEditText_four.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+
+            @Override
+            public void afterTextChanged(Editable input_num) {
+
+                if( !(input_num.toString().contains("-")) ){
+                    Snackbar.make(view,"전화번호 양식에 맞게 기입해주세요.",Snackbar.LENGTH_LONG).show();
+                }
+                else{
+                    textInputLayout_four.setError(null);
+                }
+
+            }
+        });
     }
 }
