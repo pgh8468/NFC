@@ -24,7 +24,7 @@ public class SaturdayDecorator implements DayViewDecorator {
 
        // boolean a = calendar.before(Calendar.DAY_OF_MONTH);
 
-        return weekDay == Calendar.SATURDAY;
+        return weekDay == Calendar.SATURDAY && weekDay == calendar.get(day.getMonth()+2);
     }
 
     @Override

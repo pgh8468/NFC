@@ -22,10 +22,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="8dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,25 +49,25 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
+                        android:layout_marginStart="10dp"
                         android:layout_weight="1"
+                        android:fontFamily="@font/gmarketsansttfmedium"
                         android:gravity="start"
                         android:text="체크인"
                         android:textColor="#ffffff"
-                        android:textSize="18sp"
-                        android:fontFamily="@font/gmarketsansttfmedium"/>
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/setting_checkin"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="5dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:fontFamily="@font/gmarketsansttfmedium"
                         android:gravity="end"
                         android:text="2020-06-15"
                         android:textColor="#ffffff"
-                        android:textSize="28sp"
-                        android:fontFamily="@font/gmarketsansttfmedium"
-                        android:layout_marginTop="12dp"/>
+                        android:textSize="18sp" />
 
                 </LinearLayout>
 
@@ -79,30 +80,212 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
+                        android:layout_marginStart="10dp"
                         android:layout_weight="1"
+                        android:fontFamily="@font/gmarketsansttfmedium"
                         android:gravity="start"
                         android:text="체크아웃"
                         android:textColor="#ffffff"
-                        android:textSize="18sp"
-                        android:fontFamily="@font/gmarketsansttfmedium"/>
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/setting_checkout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="5dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:fontFamily="@font/gmarketsansttfmedium"
                         android:gravity="end"
                         android:text="2020-06-15"
                         android:textColor="#ffffff"
-                        android:textSize="28sp"
-                        android:fontFamily="@font/gmarketsansttfmedium"
-                        android:layout_marginTop="12dp"/>
+                        android:textSize="18sp" />
 
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/user_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="객실 사용 인원을 정해주세요"
+            android:fontFamily="@font/gmarketsnasttflight"
+            android:textColor="#ffffff"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.92"
+            app:layout_constraintStart_toEndOf="@+id/radioGroup"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_count">
+
+            <RadioButton
+                android:id="@+id/radioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="1 인"
+                android:textColor="#ffffff" />
+
+            <RadioButton
+                android:id="@+id/radioButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="2 인"
+                android:textColor="#ffffff" />
+
+            <RadioButton
+                android:id="@+id/radioButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="3 인"
+                android:textColor="#ffffff" />
+
+            <RadioButton
+                android:id="@+id/radioButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="4 인"
+                android:textColor="#ffffff" />
+
+        </RadioGroup>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="#ffffff"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textInputEditText_one"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="예약자 핸드폰 번호"
+                android:fontFamily="@font/gmarketsansttfmedium"
+                android:drawableEnd="@drawable/ic_phone_black_24dp"
+                android:textColor="#ffffff"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout_two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="#ffffff"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout_one">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textInputEditText_two"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="hint"
+                android:fontFamily="@font/gmarketsansttfmedium"
+                android:drawableEnd="@drawable/ic_phone_black_24dp"
+                android:textColor="#ffffff"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout_three"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="#ffffff"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout_two">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textInputEditText_three"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="hint"
+                android:fontFamily="@font/gmarketsansttfmedium"
+                android:drawableEnd="@drawable/ic_phone_black_24dp"
+                android:textColor="#ffffff"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout_four"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="16dp"
+            android:textColorHint="#ffffff"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout_three">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textInputEditText_four"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_phone_black_24dp"
+                android:hint="hint"
+                android:fontFamily="@font/gmarketsansttfmedium"
+                android:textColor="#ffffff" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/notify_usage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
+            android:textColor="#ffffff"
+            android:textSize="6dp"
+            android:fontFamily="@font/gmarketsnasttflight"
+            app:layout_constraintBottom_toTopOf="@+id/reserve_finish_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/reserve_finish_button"
+            android:background="@drawable/button_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="예약 완료"
+            android:fontFamily="@font/gmarketsansttfmedium"
+            android:textColor="#ffffff"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

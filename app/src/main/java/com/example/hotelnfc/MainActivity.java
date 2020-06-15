@@ -65,8 +65,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     Fragment Frag_login, Frag_nfc, frag_reserve, frag_reserve_room, Frag_singin;
 
-    TextView client_name;
-
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,8 +88,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.drawerlayout);
         toolbar = findViewById(R.id.toolbar);
         navigationView = findViewById(R.id.navigationview);
-
-        client_name = navigationView.findViewById(R.id.client_name);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
