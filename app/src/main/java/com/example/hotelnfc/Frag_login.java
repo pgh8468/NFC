@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
@@ -37,6 +38,8 @@ public class Frag_login extends Fragment {
 
     MainActivity mainActivity = (MainActivity) getActivity();
 
+    Frag_login frag_login;
+
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frag_login, null);
 
@@ -49,6 +52,8 @@ public class Frag_login extends Fragment {
         button_signin = view.findViewById(R.id.button_signin);
         button_signup = view.findViewById(R.id.button_signup);
         button_find = view.findViewById(R.id.button_find);
+
+        textInputLayoutPW.setPasswordVisibilityToggleEnabled(false); //자물쇠 모양 보여주는거임 지우지마세요
 
         button_signin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,15 +69,23 @@ public class Frag_login extends Fragment {
                 String inputPW = textInputEditTextPW.getText().toString();
                 Activity act = getActivity();
 
+                frag_login = new Frag_login();
+                Bundle bundle = new Bundle();
+                bundle.putString("login", inputID);
+                frag_login.setArguments(bundle);
+
                 try {
                     String login_result = new LoginToApp().execute(new URL_make("log_in").makeURL(), inputID, inputPW).get();
 
                     if( login_result.equals("2")){
                         Snackbar.make(v,"로그인 성공.", Snackbar.LENGTH_LONG).show();
-                        Intent intent = new Intent(act, MainActivity.class);
-                        intent.putExtra("loginID",inputID);
-                        startActivity(intent);
-                        act.finish();
+//                        Intent intent = new Intent(act, MainActivity.class);
+//                        intent.putExtra("loginID",inputID);
+//                        startActivity(intent);
+//                        act.finish();
+
+                        Frag_nfc frag_nfc = new Frag_nfc();
+//                        FragmentManager fragmentManager =
                     }
                     else{
                         Snackbar.make(v,"입력하신 값을 다시한번 확인해주세요.", Snackbar.LENGTH_LONG).show();
