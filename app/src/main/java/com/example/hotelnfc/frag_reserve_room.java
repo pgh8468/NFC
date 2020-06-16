@@ -47,6 +47,16 @@ public class frag_reserve_room extends Fragment {
 
     View view;
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setHasOptionsMenu(true);
+
+        arrayList = new ArrayList<>();
+        arrayList.add(new Item_room("Queen", "75,500", R.drawable.first));
+        arrayList.add(new Item_room("King", "90,500", R.drawable.first));
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frag_reserve_room, null);
@@ -80,16 +90,6 @@ public class frag_reserve_room extends Fragment {
         });
 
         return view;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        setHasOptionsMenu(true);
-        arrayList = new ArrayList<>();
-        arrayList.add(new Item_room("Queen", "75,500", R.drawable.first));
-        arrayList.add(new Item_room("King", "90,500", R.drawable.first));
     }
 
     public class RemainRoom extends AsyncTask<String, Void, String>{
