@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     String login_id;
 
-    Fragment Frag_login, Frag_nfc, frag_reserve, frag_reserve_room, Frag_singin;
+    Fragment Frag_login, Frag_nfc, frag_reserve, frag_reserve_room, Frag_signin;
 
     @SuppressLint("RestrictedApi")
     @Override
@@ -70,11 +70,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Frag_login = new Frag_login();
-        Frag_nfc = new Frag_nfc();
-        frag_reserve = new frag_reserve();
-        frag_reserve_room = new frag_reserve_room();
-        Frag_singin = new Frag_signin();
+        Frag_login  frag_login= new Frag_login();
+        Frag_nfc frag_nfc = new Frag_nfc();
+        frag_reserve frag_reserve = new frag_reserve();
+        frag_reserve_room frag_reserve_room = new frag_reserve_room();
+        Frag_signin frag_signin= new Frag_signin();
 
         drawerLayout = findViewById(R.id.drawerlayout);
         toolbar = findViewById(R.id.toolbar);
@@ -101,9 +101,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 //        requestWindowFeature(Window.FEATURE_NO_TITLE); // 위에 뜨는 점 3개 없애는것
 
-
         //NFC 화면을 첫화면으로 고정
-        getSupportFragmentManager().beginTransaction().add(R.id.content_fragment, new Frag_nfc()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, new Frag_nfc(), null).addToBackStack(null).commit();
+
     }
 
     @Override
