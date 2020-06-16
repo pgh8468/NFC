@@ -29,7 +29,7 @@ public class frag_reserve_room extends Fragment {
     private ItemRoomAdapter itemRoomAdapter;
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
-    private String StartDay, LastDay;
+    private String StartDay, LastDay, RoomInfo;
 
     MainActivity mainActivity;
 
@@ -40,9 +40,10 @@ public class frag_reserve_room extends Fragment {
 
     }
 
-    public frag_reserve_room(String StartDay, String LastDay) {
+    public frag_reserve_room(String StartDay, String LastDay, String RoomInfo) {
         this.StartDay = StartDay;
         this.LastDay = LastDay;
+        this.RoomInfo = RoomInfo;
     }
 
     View view;
