@@ -79,10 +79,7 @@ public class Frag_login extends Fragment {
 //                        startActivity(intent);
 //                        act.finish();
 
-                        Frag_nfc frag_nfc = new Frag_nfc();
-                        Bundle bundle = new Bundle();
-                        bundle.putString("login", inputID);
-                        frag_nfc.setArguments(bundle);
+                        Frag_nfc frag_nfc = new Frag_nfc(inputID);
 
                         FragmentManager fragmentManager = getFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

@@ -23,9 +23,8 @@ import androidx.fragment.app.FragmentTransaction;
 public class Frag_nfc extends Fragment {
 
     View view;
-    TextView nfc_booked, nfc_detail_booked;
+    TextView nfc_booked, nfc_detail_booked, txt_logined_book_info;
     Button btn_issue_key;
-    NfcAdapter nfcAdapter;
     String logined_id = null;
 
     String resultday;
@@ -37,6 +36,13 @@ public class Frag_nfc extends Fragment {
 
     String stayDay;
 
+    public Frag_nfc(){
+
+    }
+    public Frag_nfc(String logined_id){
+        this.logined_id = logined_id;
+    }
+
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frag_nfc, null);
@@ -44,20 +50,16 @@ public class Frag_nfc extends Fragment {
         nfc_booked = view.findViewById(R.id.txt_remain_book_date);
         nfc_detail_booked = view.findViewById(R.id.txt_logined_book_info);
         btn_issue_key = view.findViewById(R.id.btn_issue_key);
+        txt_logined_book_info = view.findViewById(R.id.txt_logined_book_info);
 
-        nfcAdapter = NfcAdapter.getDefaultAdapter(getActivity());
+        if(logined_id != null){
+            txt_logined_book_info.setText("방 문 앞에서 NFC 를 활성화 하고 모바일키 발급 받기를 눌러주세요.");
 
-        if(nfcAdapter == null){
-            Toast.makeText(getActivity(), "nfc 안킨거 아니냐?", Toast.LENGTH_LONG).show();
-            String android_id = Settings.Secure.getString(getActivity().getContentResolver(),Settings.Secure.ANDROID_ID);
-            Log.e("check id",android_id);
         }
 
         btn_issue_key.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                logined_id = "testID";
 
                 if (logined_id != null) {
                     Intent intent = new Intent(getActivity(), NfcIssueKey.class);
