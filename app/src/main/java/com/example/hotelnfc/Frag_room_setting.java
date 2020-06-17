@@ -42,6 +42,7 @@ public class Frag_room_setting extends Fragment {
 
     String StartDay;
     String LastDay;
+    String RoomNum;
     int check_radio_btn;
 
     ImageView setting_img;
@@ -60,9 +61,10 @@ public class Frag_room_setting extends Fragment {
     public Frag_room_setting() {
         // Required empty public constructor
     }
-    public Frag_room_setting(String StartDay, String LastDay){
+    public Frag_room_setting(String StartDay, String LastDay, String RoomNum){
         this.StartDay = StartDay;
         this.LastDay = LastDay;
+        this.RoomNum =RoomNum;
 
     }
 
@@ -135,12 +137,12 @@ public class Frag_room_setting extends Fragment {
             }
         });
 
-<<<<<<< HEAD
+
         //예약 완료 눌렀을 때 동작
         reserve_finish_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+
                 //reserve_check_room 프래그먼트로 정보를 넘겨줘야됌.
 
                 //초기화면으로 전환
@@ -148,24 +150,15 @@ public class Frag_room_setting extends Fragment {
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentManager.beginTransaction().replace(R.id.content_fragment, new Frag_nfc(), null).addToBackStack(null).commit();
                 fragmentTransaction.commit();
-=======
-        setting_checkin.setText(StartDay);
-        setting_checkout.setText(LastDay);
 
-        reserve_finish_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String input_num1 = textInputEditText_one.getText().toString();
-
-
->>>>>>> 670eece9beb575f7216d8d8afe4e5d74ceb4318f
             }
         });
 
+        setting_checkin.setText(StartDay);
+        setting_checkout.setText(LastDay);
+
         return view;
     }
-
     void Findid() {
         setting_img = view.findViewById(R.id.setting_img);
 

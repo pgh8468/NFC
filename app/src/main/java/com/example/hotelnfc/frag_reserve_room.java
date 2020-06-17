@@ -14,6 +14,12 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -22,6 +28,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 public class frag_reserve_room extends Fragment {
 
@@ -30,6 +37,7 @@ public class frag_reserve_room extends Fragment {
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     private String StartDay, LastDay, RoomInfo;
+    private StringBuilder room1, room2;
 
     MainActivity mainActivity;
 
@@ -55,8 +63,39 @@ public class frag_reserve_room extends Fragment {
         setHasOptionsMenu(true);
 
         arrayList = new ArrayList<>();
-        arrayList.add(new Item_room("Queen", "75,500", R.drawable.first));
-        arrayList.add(new Item_room("King", "90,500", R.drawable.first));
+
+        room1 = new StringBuilder();
+        room2 = new StringBuilder();
+
+        try {
+            JSONArray jsonArray = new JSONArray(RoomInfo);
+            Log.e("ary", jsonArray.toString());
+            for( int i=0; i< jsonArray.length(); i++){
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                if(jsonObject.get("RGrade").toString().equals("1")){
+                    room1.append(jsonObject.get("RNum").toString());
+                    room1.append("/");
+                }
+                if(jsonObject.get("RGrade").toString().equals("2")){
+                    room2.append(jsonObject.get("RNum").toString());
+                    room2.append("/");
+                }
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Log.e("room1", room1.toString());
+        Log.e("room2", room2.toString());
+
+        if(room1 !=null){
+            arrayList.add(new Item_room("Queen", "75,500", R.drawable.first));
+        }
+        if(room2 !=null){
+            arrayList.add(new Item_room("King", "90,500", R.drawable.first));
+        }
+
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -82,10 +121,25 @@ public class frag_reserve_room extends Fragment {
                 Log.e("FirstDay",StartDay);
                 Log.e("LastDay",LastDay);
 
-                Frag_room_setting frag_room_setting = new Frag_room_setting(StartDay,LastDay);
-                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentManager.beginTransaction().replace(R.id.content_fragment, frag_room_setting, null).addToBackStack(null).commit();
-                fragmentTransaction.commit();
+                if(position ==0){
+                    String[] split_room1 = room1.toString().split("/");
+                    Log.e("split_room1[0]: ", split_room1[0]);
+                    Frag_room_setting frag_room_setting = new Frag_room_setting(StartDay,LastDay,split_room1[0]);
+                    FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                    fragmentManager.beginTransaction().replace(R.id.content_fragment, frag_room_setting, null).addToBackStack(null).commit();
+                    fragmentTransaction.commit();
+
+                }
+                if(position ==1){
+                    String[] split_room2 = room2.toString().split("/");
+                    Log.e("split_room1[0]: ", split_room2[0]);
+                    Frag_room_setting frag_room_setting = new Frag_room_setting(StartDay,LastDay,split_room2[0]);
+                    FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                    fragmentManager.beginTransaction().replace(R.id.content_fragment, frag_room_setting, null).addToBackStack(null).commit();
+                    fragmentTransaction.commit();
+
+                }
+
 
             }
         });
@@ -93,7 +147,7 @@ public class frag_reserve_room extends Fragment {
         return view;
     }
 
-    public class RemainRoom extends AsyncTask<String, Void, String>{
+    public class RemainRoomList extends AsyncTask<String, Void, String>{
 
         @Override
         protected String doInBackground(String... params) {
@@ -131,4 +185,5 @@ public class frag_reserve_room extends Fragment {
             return output.toString();
         }
     }
+
 }
