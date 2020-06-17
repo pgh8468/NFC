@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
@@ -68,11 +69,6 @@ public class Frag_login extends Fragment {
                 String inputPW = textInputEditTextPW.getText().toString();
                 Activity act = getActivity();
 
-                frag_login = new Frag_login();
-                Bundle bundle = new Bundle();
-                bundle.putString("login", inputID);
-                frag_login.setArguments(bundle);
-
                 try {
                     String login_result = new LoginToApp().execute(new URL_make("log_in").makeURL(), inputID, inputPW).get();
 
@@ -84,7 +80,14 @@ public class Frag_login extends Fragment {
 //                        act.finish();
 
                         Frag_nfc frag_nfc = new Frag_nfc();
-//                        FragmentManager fragmentManager =
+                        Bundle bundle = new Bundle();
+                        bundle.putString("login", inputID);
+                        frag_nfc.setArguments(bundle);
+
+                        FragmentManager fragmentManager = getFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentManager.beginTransaction().replace(R.id.content_fragment, frag_nfc).commit();
+                        fragmentTransaction.commit();
                     }
                     else{
                         Snackbar.make(v,"입력하신 값을 다시한번 확인해주세요.", Snackbar.LENGTH_LONG).show();

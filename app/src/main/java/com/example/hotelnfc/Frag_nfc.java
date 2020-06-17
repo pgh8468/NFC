@@ -35,6 +35,9 @@ public class Frag_nfc extends Fragment {
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
 
+    String stayDay;
+
+
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frag_nfc, null);
 
@@ -48,11 +51,12 @@ public class Frag_nfc extends Fragment {
 
         nfcAdapter = NfcAdapter.getDefaultAdapter(getActivity());
 
-        if (getArguments() != null) {
-            String stayDay = getArguments().getString("stayDay");
-            Log.e("d-day", stayDay);
-            nfc_booked.setText(stayDay);
-        }
+//        if (getArguments() != null) {
+//
+//            stayDay = getArguments().getString("login");
+//            Log.e("Login ID", stayDay);
+//            nfc_booked.setText(stayDay);
+//        }
 
         if(nfcAdapter == null){
             Toast.makeText(getActivity(), "nfc 안킨거 아니냐?", Toast.LENGTH_LONG).show();

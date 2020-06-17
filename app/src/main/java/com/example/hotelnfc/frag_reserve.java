@@ -111,6 +111,10 @@ public class frag_reserve extends Fragment {
                             Snackbar.make(v,"오늘 이전의 날짜부터 예약할 수 없습니다.", Snackbar.LENGTH_LONG).show();
                         }
 
+                        else if(Firstday == null || Lastday == null){
+                            Snackbar.make(v,"체크인/아웃 날짜를 지정해주세요.", Snackbar.LENGTH_LONG).show();
+                        }
+
                         else{
 //                            값 넘어가는거 확인함
 //                            new TestInputDate().execute(new URL_make("and_date").makeURL(), Firstday,Lastday).get();
@@ -119,8 +123,16 @@ public class frag_reserve extends Fragment {
                             bun.putString("FirstDay",Firstday);
                             bun.putString("LastDay",Lastday);
 
+                            StringBuilder firstday_checkin = new StringBuilder();
+                            StringBuilder lastday_checkout = new StringBuilder();
+                            firstday_checkin.append(Firstday);
+                            firstday_checkin.append(" 14:00:00");
+                            lastday_checkout.append(Lastday);
+                            lastday_checkout.append(" 11:00:00");
 
-                            frag_reserve_room frag_reserve_room = new frag_reserve_room(Firstday,Lastday);
+                            String roomRemain = new RemainRoomInputDate().execute(new URL_make("check_room_remain").makeURL(), firstday_checkin.toString(), lastday_checkout.toString()).get();
+
+                            frag_reserve_room frag_reserve_room = new frag_reserve_room(Firstday,Lastday,roomRemain);
                             FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                             fragmentManager.beginTransaction().replace(R.id.content_fragment, frag_reserve_room, null).addToBackStack(null).commit();
                             fragmentTransaction.commit();
@@ -128,13 +140,11 @@ public class frag_reserve extends Fragment {
 
                     } catch (ParseException e) {
                         e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
                     }
-//                    catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    } catch (ExecutionException e) {
-//                        e.printStackTrace();
-//                    }
-
 
                 }
             }
@@ -202,7 +212,7 @@ public class frag_reserve extends Fragment {
 
     }
 
-    public class TestInputDate extends AsyncTask<String, Void, String>{
+    public class RemainRoomInputDate extends AsyncTask<String, Void, String>{
 
         @Override
         protected String doInBackground(String... params) {
