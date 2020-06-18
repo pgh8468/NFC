@@ -1,6 +1,7 @@
 package com.example.hotelnfc;
 
 import android.graphics.drawable.Drawable;
+import android.view.View;
 
 public class Item_room {
 

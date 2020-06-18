@@ -1,6 +1,7 @@
 package com.example.hotelnfc;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +29,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -54,6 +56,7 @@ import java.util.concurrent.ExecutionException;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public static String logined_id;
+    public static TextView client_name;
 
     DrawerLayout drawerLayout;
     Toolbar toolbar;
@@ -61,6 +64,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ActionBarDrawerToggle toogle;
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
+
+    View navi_header;
 
     Fragment Frag_login, Frag_nfc, frag_reserve, frag_reserve_room, Frag_signin;
 
@@ -79,6 +84,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.drawerlayout);
         toolbar = findViewById(R.id.toolbar);
         navigationView = findViewById(R.id.navigationview);
+
+        navi_header = navigationView.getHeaderView(0);
+
+        client_name = (TextView) navi_header.findViewById(R.id.client_name);
+
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
@@ -111,6 +121,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getMenuInflater().inflate(R.menu.menu_item, menu);
         return super.onCreateOptionsMenu(menu);
     }
+
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {

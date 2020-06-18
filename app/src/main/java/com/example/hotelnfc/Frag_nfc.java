@@ -4,9 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.telephony.TelephonyManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,11 +26,14 @@ public class Frag_nfc extends Fragment {
     String resultday;
 
     MainActivity mainActivity = new MainActivity();
+    MainActivity main = (MainActivity) getActivity();
 
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
 
     String stayDay;
+
+    View navi_header;
 
     public Frag_nfc(){
 
@@ -50,6 +50,7 @@ public class Frag_nfc extends Fragment {
         if(MainActivity.logined_id != null){
             txt_logined_book_info.setText("방 문 앞에서 NFC 를 활성화 하고 모바일키 발급 받기를 눌러주세요.");
 
+            MainActivity.client_name.setText(MainActivity.logined_id);
         }
 
         btn_issue_key.setOnClickListener(new View.OnClickListener() {
