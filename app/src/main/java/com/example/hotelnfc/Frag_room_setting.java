@@ -24,11 +24,14 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.concurrent.ExecutionException;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -51,7 +54,7 @@ public class Frag_room_setting extends Fragment {
     String LastDay;
     String RoomInfo;
     String RoomGrade;
-    int check_radio_btn;
+    String check_radio_btn;
 
     ImageView setting_img;
     TextView setting_checkin, setting_checkout, notify_usage;
@@ -119,29 +122,34 @@ public class Frag_room_setting extends Fragment {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (checkedId == 0) {
                     Snackbar.make(view,"인원 수를 선택해주세요.", Snackbar.LENGTH_SHORT).show();
-                } else if (checkedId == R.id.radioButton) { //1인
+                }
+                else if (checkedId == R.id.radioButton) { //1인
                     textInputLayout_one.setVisibility(view.VISIBLE);
                     textInputLayout_two.setVisibility(view.GONE);
                     textInputLayout_three.setVisibility(view.GONE);
                     textInputLayout_four.setVisibility(view.GONE);
-                    check_radio_btn = 2;
-                } else if (checkedId == R.id.radioButton2) { //2인
+                    check_radio_btn = "1";
+                }
+                else if (checkedId == R.id.radioButton2) { //2인
                     textInputLayout_one.setVisibility(view.VISIBLE);
                     textInputLayout_two.setVisibility(view.VISIBLE);
                     textInputLayout_three.setVisibility(view.GONE);
                     textInputLayout_four.setVisibility(view.GONE);
-                    check_radio_btn = 3;
-                } else if (checkedId == R.id.radioButton3) { //3인
+                    check_radio_btn = "2";
+                }
+                else if (checkedId == R.id.radioButton3) { //3인
                     textInputLayout_one.setVisibility(view.VISIBLE);
                     textInputLayout_two.setVisibility(view.VISIBLE);
                     textInputLayout_three.setVisibility(view.VISIBLE);
                     textInputLayout_four.setVisibility(view.GONE);
-                } else if (checkedId == R.id.radioButton4) { //4인
+                    check_radio_btn = "3";
+                }
+                else if (checkedId == R.id.radioButton4) { //4인
                     textInputLayout_one.setVisibility(view.VISIBLE);
                     textInputLayout_two.setVisibility(view.VISIBLE);
                     textInputLayout_three.setVisibility(view.VISIBLE);
                     textInputLayout_four.setVisibility(view.VISIBLE);
-                    check_radio_btn = 4;
+                    check_radio_btn = "4";
                 }
             }
         });
@@ -152,16 +160,118 @@ public class Frag_room_setting extends Fragment {
             @Override
             public void onClick(View v) {
 
-                String[] split_room = RoomInfo.split("/");
-                Log.e("split_room_final",Integer.toString(split_room.length));
-                Log.e("split_room_final",split_room[split_room.length-1]);
+                StringBuilder bookphone = new StringBuilder();
+                Log.e("Stringf","Stringf");
+
+                if(check_radio_btn.equals("0")){
+                    Snackbar.make(v, "최소 1개 이상의 전화번호를 입력해주세요.",Snackbar.LENGTH_LONG).show();
+                }
+
+                else if(check_radio_btn.equals("1")){
+                    if(textInputEditText_one.getText().toString() == null){
+                        Snackbar.make(v, "전화번호를 입력해주세요.",Snackbar.LENGTH_LONG).show();
+                    }
+                    else if(textInputEditText_one.getText().toString().length()>13){
+                        Snackbar.make(v, "전화번호 형식에 맞게 입력해주세요.",Snackbar.LENGTH_LONG).show();
+                    }
+                    else{
+                        bookphone.append(textInputEditText_one.getText().toString());
+                        bookphone.append("/");
+                    }
+
+                }
+
+                else if(check_radio_btn.equals("2")){
+                    if(textInputEditText_one.getText().toString() == null | textInputEditText_two.getText().toString() == null){
+                        Snackbar.make(v, "전화번호를 입력해주세요.",Snackbar.LENGTH_LONG).show();
+                    }
+                    else if(textInputEditText_one.getText().toString().length()>13 | textInputEditText_two.getText().toString().length()>13){
+                        Snackbar.make(v, "전화번호 형식에 맞게 입력해주세요.",Snackbar.LENGTH_LONG).show();
+                    }
+                    else{
+                        bookphone.append(textInputEditText_one.getText().toString());
+                        bookphone.append("/");
+                        bookphone.append(textInputEditText_two.getText().toString());
+                    }
+
+                }
+
+                else if(check_radio_btn.equals("3")){
+                    if(textInputEditText_one.getText().toString() == null | textInputEditText_two.getText().toString() == null |
+                            textInputEditText_three.getText().toString() == null){
+                        Snackbar.make(v, "전화번호를 입력해주세요.",Snackbar.LENGTH_LONG).show();
+                    }
+                    else if(textInputEditText_one.getText().toString().length()>13 | textInputEditText_two.getText().toString().length()>13 |
+                            textInputEditText_one.getText().toString().length()>13){
+                        Snackbar.make(v, "전화번호 형식에 맞게 입력해주세요.",Snackbar.LENGTH_LONG).show();
+                    }
+                    else{
+                        bookphone.append(textInputEditText_one.getText().toString());
+                        bookphone.append("/");
+                        bookphone.append(textInputEditText_two.getText().toString());
+                        bookphone.append("/");
+                        bookphone.append(textInputEditText_three.getText().toString());
+                    }
+                }
+
+                else if(check_radio_btn.equals("4")){
+                    if(textInputEditText_one.getText().toString() == null | textInputEditText_two.getText().toString() == null |
+                            textInputEditText_three.getText().toString() == null | textInputEditText_four.getText().toString() == null){
+                        Snackbar.make(v, "전화번호를 입력해주세요.",Snackbar.LENGTH_LONG).show();
+                    }
+                    else if(textInputEditText_one.getText().toString().length()>13 | textInputEditText_two.getText().toString().length()>13 |
+                            textInputEditText_one.getText().toString().length()>13 | textInputEditText_three.getText().toString().length()>13){
+                        Snackbar.make(v, "전화번호 형식에 맞게 입력해주세요.",Snackbar.LENGTH_LONG).show();
+                    }
+                    else{
+                        bookphone.append(textInputEditText_one.getText().toString());
+                        bookphone.append("/");
+                        bookphone.append(textInputEditText_two.getText().toString());
+                        bookphone.append("/");
+                        bookphone.append(textInputEditText_three.getText().toString());
+                        bookphone.append("/");
+                        bookphone.append(textInputEditText_four.getText().toString());
+                        Log.e("booked phone", bookphone.toString());
+                    }
+                }
+
+                else{
+                    Log.e("print radio btn",check_radio_btn);
+
+                    String[] split_room = RoomInfo.split("/");
+                    URL_make url = new URL_make("insert_newbook");
+                    String inputURL = url.makeURL();
+                    Log.e("String","String");
+
+                    for(int i=0; i<split_room.length; i++){
+                        try {
+                            String roomnum = split_room[i];
+
+                            String results = new NewBookRoom().execute(inputURL, MainActivity.logined_id, roomnum, StartDay, LastDay, check_radio_btn, bookphone.toString()).get();
+                            if(results.equals("1")){
+                                break;
+                            }
+                            if( i == split_room.length-1){
+                                Snackbar.make(v,"해당 옵션의 방은 매진되었습니다.", Snackbar.LENGTH_LONG).show();
+                            }
+                        } catch (ExecutionException e) {
+                            e.printStackTrace();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                    Log.e("split_room_final",Integer.toString(split_room.length));
+                    Log.e("split_room_final",split_room[split_room.length-1]);
 
 
-                //초기화면으로 전환
-                fragmentManager = getFragmentManager();
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentManager.beginTransaction().replace(R.id.content_fragment, new Frag_nfc(), null).addToBackStack(null).commit();
-                fragmentTransaction.commit();
+                    //초기화면으로 전환
+                    fragmentManager = getFragmentManager();
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentManager.beginTransaction().replace(R.id.content_fragment, new Frag_nfc(), null).addToBackStack(null).commit();
+                    fragmentTransaction.commit();
+
+                }
 
             }
         });
@@ -291,6 +401,7 @@ public class Frag_room_setting extends Fragment {
         });
     }
 
+
     public class NewBookRoom extends AsyncTask<String, Void, String>{
 
         @Override
@@ -300,12 +411,26 @@ public class Frag_room_setting extends Fragment {
             try {
                 URL url = new URL(params[0]);
                 HttpURLConnection con = (HttpURLConnection)url.openConnection();
-
                 con.setRequestMethod("POST");
                 con.setDoInput(true);
                 con.setDoOutput(true);
+
                 DataOutputStream dos = new DataOutputStream(con.getOutputStream());
-                dos.writeBytes("UserID="+params[1]+"&StartDate="+params[2]+"&EndDate="+params[3]+"&");
+                dos.writeBytes("UserID="+params[1]+"&roomnum="+params[2]+"&StartDate="+params[3]+"&EndDate="+params[4]+"&numofphone="+params[5]+"&bookphone="+params[6]);
+                dos.flush();
+                dos.close();
+
+                InputStreamReader is = new InputStreamReader(con.getInputStream());
+                BufferedReader reader = new BufferedReader(is);
+                String results = "";
+
+                while(true){
+                    results = reader.readLine();
+                    if(results == null){
+                        break;
+                    }output.append(results);
+                }
+
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
