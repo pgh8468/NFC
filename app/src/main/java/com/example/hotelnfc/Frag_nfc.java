@@ -25,7 +25,6 @@ public class Frag_nfc extends Fragment {
     View view;
     TextView nfc_booked, nfc_detail_booked, txt_logined_book_info;
     Button btn_issue_key;
-    String logined_id = null;
 
     String resultday;
 
@@ -39,10 +38,6 @@ public class Frag_nfc extends Fragment {
     public Frag_nfc(){
 
     }
-    public Frag_nfc(String logined_id){
-        this.logined_id = logined_id;
-    }
-
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frag_nfc, null);
@@ -52,7 +47,7 @@ public class Frag_nfc extends Fragment {
         btn_issue_key = view.findViewById(R.id.btn_issue_key);
         txt_logined_book_info = view.findViewById(R.id.txt_logined_book_info);
 
-        if(logined_id != null){
+        if(MainActivity.logined_id != null){
             txt_logined_book_info.setText("방 문 앞에서 NFC 를 활성화 하고 모바일키 발급 받기를 눌러주세요.");
 
         }
@@ -61,9 +56,9 @@ public class Frag_nfc extends Fragment {
             @Override
             public void onClick(View v) {
 
-                if (logined_id != null) {
+                if (MainActivity.logined_id != null) {
                     Intent intent = new Intent(getActivity(), NfcIssueKey.class);
-                    intent.putExtra("logined_id", logined_id);
+                    intent.putExtra("logined_id", MainActivity.logined_id);
                     startActivity(intent);
                 } else {
                     Toast.makeText(getActivity(), "로그인이 필요한 서비스입니다.", Toast.LENGTH_LONG).show();

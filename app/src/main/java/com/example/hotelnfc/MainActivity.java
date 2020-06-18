@@ -53,14 +53,14 @@ import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    public static String logined_id;
+
     DrawerLayout drawerLayout;
     Toolbar toolbar;
     NavigationView navigationView;
     ActionBarDrawerToggle toogle;
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
-
-    String login_id;
 
     Fragment Frag_login, Frag_nfc, frag_reserve, frag_reserve_room, Frag_signin;
 
@@ -117,24 +117,66 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = menuItem.getItemId();
 
         if (id == R.id.reserve) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, new frag_reserve(), null).addToBackStack(null).commit();
-        } else if (id == R.id.check_reserve) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, new frag_check_reserve(), null).addToBackStack(null).commit();
-        } else if (id == R.id.menu_login) {
-            if (login_id == null) {
+
+            if( logined_id != null){
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, new frag_reserve(), null).addToBackStack(null).commit();
+            }
+            else{
+                Snackbar.make(getWindow().getDecorView().getRootView(),"로그인이 필요한 서비스입니다.",Snackbar.LENGTH_INDEFINITE).setAction("yes", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, new Frag_login(), null).addToBackStack(null).commit();
+                    }
+                }).show();
+            }
+        }
+        else if (id == R.id.check_reserve) {
+
+            if( logined_id != null){
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, new frag_check_reserve(), null).addToBackStack(null).commit();
+            }
+            else{
+                Snackbar.make(getWindow().getDecorView().getRootView(),"로그인이 필요한 서비스입니다.",Snackbar.LENGTH_INDEFINITE).setAction("yes", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, new Frag_login(), null).addToBackStack(null).commit();
+                    }
+                }).show();
+            }
+        }
+        else if (id == R.id.menu_login) {
+
+            if (logined_id == null) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, new Frag_login(), null).addToBackStack(null).commit();
-            } else {
+            }
+            else {
                 menuItem.setVisible(false);
             }
-        } else if (id == R.id.menu_signin) {
-            if (login_id == null) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, new Frag_signin(), null).addToBackStack(null).commit();
-            } else {
-                //menuItem.setVisible(false);
-            }
-        } else if (id == R.id.facility_guide) {
+        }
+        else if (id == R.id.menu_signin) {
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, new Frag_signin(), null).addToBackStack(null).commit();
+            //menuItem.setVisible(false);
+
+        }
+        else if (id == R.id.facility_guide) {
             Intent intent = new Intent(this, NfcIssueKey.class);
             startActivity(intent);
+        }
+        else if(id == R.id.menu_logout){
+
+            if(logined_id != null){
+                //로그아웃 진행 후 액티비티 재 실행
+                Intent intent = new Intent(this, MainActivity.class);
+                logined_id = null;
+                finish();
+                startActivity(intent);
+
+            }
+            else{
+                //로그인 후 이용할 수 있는 기능임을 안내
+            }
+
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);

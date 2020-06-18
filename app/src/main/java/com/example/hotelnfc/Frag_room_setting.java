@@ -1,5 +1,6 @@
 package com.example.hotelnfc;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.core.app.TaskStackBuilder;
@@ -23,6 +24,12 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link Frag_room_setting#newInstance} factory method to
@@ -42,7 +49,8 @@ public class Frag_room_setting extends Fragment {
 
     String StartDay;
     String LastDay;
-    String RoomNum;
+    String RoomInfo;
+    String RoomGrade;
     int check_radio_btn;
 
     ImageView setting_img;
@@ -61,10 +69,11 @@ public class Frag_room_setting extends Fragment {
     public Frag_room_setting() {
         // Required empty public constructor
     }
-    public Frag_room_setting(String StartDay, String LastDay, String RoomNum){
+    public Frag_room_setting(String StartDay, String LastDay, String RoomInfo, String RoomGrade){
         this.StartDay = StartDay;
         this.LastDay = LastDay;
-        this.RoomNum =RoomNum;
+        this.RoomInfo =RoomInfo;
+        this.RoomGrade = RoomGrade;
 
     }
 
@@ -143,7 +152,10 @@ public class Frag_room_setting extends Fragment {
             @Override
             public void onClick(View v) {
 
-                //reserve_check_room 프래그먼트로 정보를 넘겨줘야됌.
+                String[] split_room = RoomInfo.split("/");
+                Log.e("split_room_final",Integer.toString(split_room.length));
+                Log.e("split_room_final",split_room[split_room.length-1]);
+
 
                 //초기화면으로 전환
                 fragmentManager = getFragmentManager();
@@ -171,6 +183,10 @@ public class Frag_room_setting extends Fragment {
         radioButton2 = view.findViewById(R.id.radioButton2);
         radioButton3 = view.findViewById(R.id.radioButton3);
         radioButton4 = view.findViewById(R.id.radioButton4);
+
+        if(RoomGrade.equals("1")){
+            radioButton4.setVisibility(View.GONE);
+        }
 
         textInputLayout_one = view.findViewById(R.id.textInputLayout_one);
         textInputLayout_two = view.findViewById(R.id.textInputLayout_two);
@@ -273,5 +289,29 @@ public class Frag_room_setting extends Fragment {
 
             }
         });
+    }
+
+    public class NewBookRoom extends AsyncTask<String, Void, String>{
+
+        @Override
+        protected String doInBackground(String... params) {
+            StringBuilder output = new StringBuilder();
+
+            try {
+                URL url = new URL(params[0]);
+                HttpURLConnection con = (HttpURLConnection)url.openConnection();
+
+                con.setRequestMethod("POST");
+                con.setDoInput(true);
+                con.setDoOutput(true);
+                DataOutputStream dos = new DataOutputStream(con.getOutputStream());
+                dos.writeBytes("UserID="+params[1]+"&StartDate="+params[2]+"&EndDate="+params[3]+"&");
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return output.toString();
+        }
     }
 }

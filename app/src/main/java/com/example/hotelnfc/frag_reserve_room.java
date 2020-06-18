@@ -122,18 +122,18 @@ public class frag_reserve_room extends Fragment {
                 Log.e("LastDay",LastDay);
 
                 if(position ==0){
-                    String[] split_room1 = room1.toString().split("/");
-                    Log.e("split_room1[0]: ", split_room1[0]);
-                    Frag_room_setting frag_room_setting = new Frag_room_setting(StartDay,LastDay,split_room1[0]);
+//                    String[] split_room1 = room1.toString().split("/");
+//                    Log.e("split_room1[0]: ", split_room1[0]);
+                    Frag_room_setting frag_room_setting = new Frag_room_setting(StartDay,LastDay,room1.toString(),"1");
                     FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                     fragmentManager.beginTransaction().replace(R.id.content_fragment, frag_room_setting, null).addToBackStack(null).commit();
                     fragmentTransaction.commit();
 
                 }
                 if(position ==1){
-                    String[] split_room2 = room2.toString().split("/");
-                    Log.e("split_room1[0]: ", split_room2[0]);
-                    Frag_room_setting frag_room_setting = new Frag_room_setting(StartDay,LastDay,split_room2[0]);
+//                    String[] split_room2 = room2.toString().split("/");
+//                    Log.e("split_room1[0]: ", split_room2[0]);
+                    Frag_room_setting frag_room_setting = new Frag_room_setting(StartDay,LastDay,room2.toString(),"2");
                     FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                     fragmentManager.beginTransaction().replace(R.id.content_fragment, frag_room_setting, null).addToBackStack(null).commit();
                     fragmentTransaction.commit();
