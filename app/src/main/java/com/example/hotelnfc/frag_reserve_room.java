@@ -37,7 +37,7 @@ public class frag_reserve_room extends Fragment {
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     private String StartDay, LastDay, RoomInfo;
-    private StringBuilder room1, room2;
+    private StringBuilder room1 = null, room2 = null;
 
     MainActivity mainActivity;
 
@@ -89,10 +89,10 @@ public class frag_reserve_room extends Fragment {
         Log.e("room1", room1.toString());
         Log.e("room2", room2.toString());
 
-        if(room1 !=null){
+        if( !(room1.equals(""))){
             arrayList.add(new Item_room("Queen", "75,500", R.drawable.first));
         }
-        if(room2 !=null){
+        if(!(room2.equals(""))){
             arrayList.add(new Item_room("King", "90,500", R.drawable.first));
         }
 

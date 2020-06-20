@@ -54,7 +54,7 @@ public class Frag_room_setting extends Fragment {
     String LastDay;
     String RoomInfo;
     String RoomGrade;
-    String check_radio_btn;
+    String check_radio_btn = "0";
 
     ImageView setting_img;
     TextView setting_checkin, setting_checkout, notify_usage;
@@ -161,42 +161,53 @@ public class Frag_room_setting extends Fragment {
             public void onClick(View v) {
 
                 StringBuilder bookphone = new StringBuilder();
+                int inputflag = 0;
+                String check_phone_state = null;
                 Log.e("Stringf","Stringf");
 
                 if(check_radio_btn.equals("0")){
                     Snackbar.make(v, "최소 1개 이상의 전화번호를 입력해주세요.",Snackbar.LENGTH_LONG).show();
                 }
 
-                else if(check_radio_btn.equals("1")){
+                if(check_radio_btn.equals("1")){
+                    Log.e("input1:",textInputEditText_one.getText().toString());
                     if(textInputEditText_one.getText().toString() == null){
                         Snackbar.make(v, "전화번호를 입력해주세요.",Snackbar.LENGTH_LONG).show();
                     }
                     else if(textInputEditText_one.getText().toString().length()>13){
                         Snackbar.make(v, "전화번호 형식에 맞게 입력해주세요.",Snackbar.LENGTH_LONG).show();
                     }
+                    else if (textInputEditText_one.getText().toString().equals("")){
+                        Snackbar.make(v, "전화번호를 입력해주세요.",Snackbar.LENGTH_LONG).show();
+                    }
                     else{
                         bookphone.append(textInputEditText_one.getText().toString());
                         bookphone.append("/");
+                        inputflag =1;
                     }
 
                 }
 
-                else if(check_radio_btn.equals("2")){
+                if(check_radio_btn.equals("2")){
                     if(textInputEditText_one.getText().toString() == null | textInputEditText_two.getText().toString() == null){
                         Snackbar.make(v, "전화번호를 입력해주세요.",Snackbar.LENGTH_LONG).show();
                     }
                     else if(textInputEditText_one.getText().toString().length()>13 | textInputEditText_two.getText().toString().length()>13){
                         Snackbar.make(v, "전화번호 형식에 맞게 입력해주세요.",Snackbar.LENGTH_LONG).show();
                     }
+                    else if (textInputEditText_one.getText().toString().equals("") | textInputEditText_two.getText().toString().equals("")){
+                        Snackbar.make(v, "전화번호를 입력해주세요.",Snackbar.LENGTH_LONG).show();
+                    }
                     else{
                         bookphone.append(textInputEditText_one.getText().toString());
                         bookphone.append("/");
                         bookphone.append(textInputEditText_two.getText().toString());
+                        inputflag=1;
                     }
 
                 }
 
-                else if(check_radio_btn.equals("3")){
+                if(check_radio_btn.equals("3")){
                     if(textInputEditText_one.getText().toString() == null | textInputEditText_two.getText().toString() == null |
                             textInputEditText_three.getText().toString() == null){
                         Snackbar.make(v, "전화번호를 입력해주세요.",Snackbar.LENGTH_LONG).show();
@@ -205,16 +216,21 @@ public class Frag_room_setting extends Fragment {
                             textInputEditText_one.getText().toString().length()>13){
                         Snackbar.make(v, "전화번호 형식에 맞게 입력해주세요.",Snackbar.LENGTH_LONG).show();
                     }
+                    else if (textInputEditText_one.getText().toString().equals("") | textInputEditText_two.getText().toString().equals("") |
+                            textInputEditText_three.getText().toString().equals("")){
+                        Snackbar.make(v, "전화번호를 입력해주세요.",Snackbar.LENGTH_LONG).show();
+                    }
                     else{
                         bookphone.append(textInputEditText_one.getText().toString());
                         bookphone.append("/");
                         bookphone.append(textInputEditText_two.getText().toString());
                         bookphone.append("/");
                         bookphone.append(textInputEditText_three.getText().toString());
+                        inputflag =1;
                     }
                 }
 
-                else if(check_radio_btn.equals("4")){
+                if(check_radio_btn.equals("4")){
                     if(textInputEditText_one.getText().toString() == null | textInputEditText_two.getText().toString() == null |
                             textInputEditText_three.getText().toString() == null | textInputEditText_four.getText().toString() == null){
                         Snackbar.make(v, "전화번호를 입력해주세요.",Snackbar.LENGTH_LONG).show();
@@ -222,6 +238,10 @@ public class Frag_room_setting extends Fragment {
                     else if(textInputEditText_one.getText().toString().length()>13 | textInputEditText_two.getText().toString().length()>13 |
                             textInputEditText_one.getText().toString().length()>13 | textInputEditText_three.getText().toString().length()>13){
                         Snackbar.make(v, "전화번호 형식에 맞게 입력해주세요.",Snackbar.LENGTH_LONG).show();
+                    }
+                    else if (textInputEditText_one.getText().toString().equals("") | textInputEditText_two.getText().toString().equals("") |
+                            textInputEditText_three.getText().toString().equals("") | textInputEditText_four.getText().toString().equals("")){
+                        Snackbar.make(v, "전화번호를 입력해주세요.",Snackbar.LENGTH_LONG).show();
                     }
                     else{
                         bookphone.append(textInputEditText_one.getText().toString());
@@ -232,16 +252,18 @@ public class Frag_room_setting extends Fragment {
                         bookphone.append("/");
                         bookphone.append(textInputEditText_four.getText().toString());
                         Log.e("booked phone", bookphone.toString());
+                        inputflag =1;
                     }
                 }
 
-                else{
+                if(inputflag == 1){
                     Log.e("print radio btn",check_radio_btn);
 
                     String[] split_room = RoomInfo.split("/");
                     URL_make url = new URL_make("insert_newbook");
                     String inputURL = url.makeURL();
                     Log.e("String","String");
+                    Log.e("final phone number", bookphone.toString());
 
                     for(int i=0; i<split_room.length; i++){
                         try {
@@ -249,6 +271,11 @@ public class Frag_room_setting extends Fragment {
 
                             String results = new NewBookRoom().execute(inputURL, MainActivity.logined_id, roomnum, StartDay, LastDay, check_radio_btn, bookphone.toString()).get();
                             if(results.equals("1")){
+                                //초기화면으로 전환
+                                fragmentManager = getFragmentManager();
+                                fragmentTransaction = fragmentManager.beginTransaction();
+                                fragmentManager.beginTransaction().replace(R.id.content_fragment, new Frag_nfc(), null).addToBackStack(null).commit();
+                                fragmentTransaction.commit();
                                 break;
                             }
                             if( i == split_room.length-1){
@@ -265,13 +292,9 @@ public class Frag_room_setting extends Fragment {
                     Log.e("split_room_final",split_room[split_room.length-1]);
 
 
-                    //초기화면으로 전환
-                    fragmentManager = getFragmentManager();
-                    fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentManager.beginTransaction().replace(R.id.content_fragment, new Frag_nfc(), null).addToBackStack(null).commit();
-                    fragmentTransaction.commit();
-
                 }
+
+
 
             }
         });
