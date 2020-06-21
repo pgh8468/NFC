@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
@@ -270,16 +271,30 @@ public class Frag_room_setting extends Fragment {
                             String roomnum = split_room[i];
 
                             String results = new NewBookRoom().execute(inputURL, MainActivity.logined_id, roomnum, StartDay, LastDay, check_radio_btn, bookphone.toString()).get();
-                            if(results.equals("1")){
+
+                            if(results.equals("0")){
                                 //초기화면으로 전환
+                                Toast.makeText(getContext(),"예약완료 !", Toast.LENGTH_LONG).show();
+                                Snackbar.make(v,"예약완료 !", Snackbar.LENGTH_LONG).show();
                                 fragmentManager = getFragmentManager();
                                 fragmentTransaction = fragmentManager.beginTransaction();
                                 fragmentManager.beginTransaction().replace(R.id.content_fragment, new Frag_nfc(), null).addToBackStack(null).commit();
                                 fragmentTransaction.commit();
                                 break;
                             }
+
                             if( i == split_room.length-1){
                                 Snackbar.make(v,"해당 옵션의 방은 매진되었습니다.", Snackbar.LENGTH_LONG).show();
+                            }
+
+                            if(results.equals("2")){
+                                Snackbar.make(v,"해당 옵션의 방은 매진되었습니다.", Snackbar.LENGTH_LONG).show();
+                            }
+                            if(results.equals("3")){
+                                Snackbar.make(v,"입력하신 핸드폰 번호를 다시 확인해주세요.", Snackbar.LENGTH_LONG).show();
+                            }
+                            if(results.equals("4")){
+                                Snackbar.make(v,"관리자에게 문의하세요.", Snackbar.LENGTH_LONG).show();
                             }
                         } catch (ExecutionException e) {
                             e.printStackTrace();

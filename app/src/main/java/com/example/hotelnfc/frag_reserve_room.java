@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -89,12 +91,17 @@ public class frag_reserve_room extends Fragment {
         Log.e("room1", room1.toString());
         Log.e("room2", room2.toString());
 
-        if( !(room1.equals(""))){
+        if( !(room1.toString().equals(""))){
             arrayList.add(new Item_room("Queen", "75,500", R.drawable.first));
         }
-        if(!(room2.equals(""))){
+        if(!(room2.toString().equals(""))){
             arrayList.add(new Item_room("King", "90,500", R.drawable.first));
         }
+        if(room1.toString().equals("") & room2.toString().equals("")){
+            Toast.makeText(getContext()," 현재 예약할 수 있는 방이 없습니다.", Toast.LENGTH_LONG).show();
+        }
+
+        arrayList.add(new Item_room("King", "90,500", R.drawable.first));
 
     }
 
