@@ -9,18 +9,25 @@ public class Item_Checkroom {
     private String check_roomclass, check_checkin, check_checkout, check_price;
     private String book_userphone, controlnum1, controlnum2, controlnum3;
     private String room_num;
+    private String book_date;
+
+    private String bookID; // book_date YY-MM-DDT시:분:초 로 이루어져 있음
 
     public Item_Checkroom(int check_img, String check_roomclass, String check_checkin, String check_checkout, String check_price,
-                          String book_userphone, String controlnum1, String controlnum2, String controlnum3, String room_num) {
+                          String book_userphone, String controlnum1, String controlnum2, String controlnum3, String room_num,
+                          String book_date, String bookID) {
         this.check_img = check_img;
         this.check_roomclass = check_roomclass;
         this.check_checkin = check_checkin;
         this.check_checkout = check_checkout;
         this.check_price = check_price;
+        this.book_userphone = book_userphone;
         this.controlnum1 = controlnum1;
         this.controlnum2 = controlnum2;
         this.controlnum3 = controlnum3;
         this.room_num = room_num;
+        this.book_date = book_date;
+        this.bookID = bookID;
     }
 
     public int getCheck_img() {
@@ -93,6 +100,30 @@ public class Item_Checkroom {
 
     public void setControlnum3(String controlnum3) {
         this.controlnum3 = controlnum3;
+    }
+
+    public String getRoom_num() {
+        return room_num;
+    }
+
+    public void setRoom_num(String room_num) {
+        this.room_num = room_num;
+    }
+
+    public String getBook_date() {
+        return book_date;
+    }
+
+    public void setBook_date(String book_date) {
+        this.book_date = book_date;
+    }
+
+    public String getBookID() {
+        return bookID;
+    }
+
+    public void setBookID(String bookID) {
+        this.bookID = bookID;
     }
 
 }

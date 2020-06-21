@@ -73,16 +73,31 @@ public class frag_check_reserve extends Fragment {
                     String grade = jsonObject.get("BGrade").toString();
                     String roomnum = jsonObject.get("BNum").toString();
                     String booktel = jsonObject.get("BTel").toString();
+                    Log.e("booked tel :", ""+booktel);
                     String contel1 = jsonObject.get("BSTel").toString();
                     String contel2 = jsonObject.get("BTTel").toString();
                     String contel3 = jsonObject.get("BFTel").toString();
-                    checkroomArrayList.add(new Item_Checkroom(R.drawable.first, grade, checkinNotime[0], checkoutNotime[0], "75,000", booktel, contel1, contel2, contel3, roomnum));
+                    String bookdate = jsonObject.get("BDate").toString();
+                    String bookID = jsonObject.get("BID").toString();
+                    checkroomArrayList.add(new Item_Checkroom(R.drawable.first, grade, checkinNotime[0], checkoutNotime[0], "75,000", booktel, contel1, contel2, contel3, roomnum, bookdate, bookID));
                 }
                 else if(jsonObject.get("").toString().equals("2")){
-                    String checkin = jsonObject.get("").toString();
-                    String checkout = jsonObject.get("").toString();
-                    String grade = jsonObject.get("").toString();
-//                    checkroomArrayList.add(new Item_Checkroom(R.drawable.first, grade, checkin, checkout, "90,500"));
+                    String checkin = jsonObject.get("BCin").toString();
+                    String checkinNotime[] = checkin.split("T");
+                    Log.e("checkinDate:", checkinNotime[0]);
+                    String checkout = jsonObject.get("BCout").toString();
+                    String checkoutNotime[] = checkout.split("T");
+                    Log.e("checkoutDate:", checkoutNotime[0]);
+                    String grade = jsonObject.get("BGrade").toString();
+                    String roomnum = jsonObject.get("BNum").toString();
+                    String booktel = jsonObject.get("BTel").toString();
+                    Log.e("booked tel :", ""+booktel);
+                    String contel1 = jsonObject.get("BSTel").toString();
+                    String contel2 = jsonObject.get("BTTel").toString();
+                    String contel3 = jsonObject.get("BFTel").toString();
+                    String bookdate = jsonObject.get("BDate").toString();
+                    String bookID = jsonObject.get("BID").toString();
+                    checkroomArrayList.add(new Item_Checkroom(R.drawable.first, grade, checkinNotime[0], checkoutNotime[0], "90,500", booktel, contel1, contel2, contel3, roomnum, bookdate, bookID));
                 }
                 else {
                     Toast.makeText(getContext(),"현재 예약된 방이 없습니다.", Toast.LENGTH_LONG).show();
@@ -96,8 +111,6 @@ public class frag_check_reserve extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        checkroomArrayList.add(new Item_Checkroom(R.drawable.first, "grade", "checkinNotime[0]", "checkoutNotime[0]", "75,000", "booktel", "contel1", "contel2", "contel3", "roomnum"));
-        Log.e("arraylist size :", Integer.toString(checkroomArrayList.size()));
 
     }
 
@@ -117,9 +130,11 @@ public class frag_check_reserve extends Fragment {
         checkroomAdapter.setCheckItemClick(new CheckroomAdapter.CheckItemClick() {
             @Override
             public void OnClick(View v, int position) {
+//                Log.e("position :", Integer.toString(position));
+//                Log.e("checked user phone :", checkroomArrayList.get(position).getBook_userphone());
                 fragmentManager = getFragmentManager();
                 fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentManager.beginTransaction().replace(R.id.content_fragment, new frag_check_reserve_two(), null).addToBackStack(null).commit();
+                fragmentManager.beginTransaction().replace(R.id.content_fragment, new frag_check_reserve_two(checkroomArrayList.get(position)), null).addToBackStack(null).commit();
                 fragmentTransaction.commit();
             }
         });
