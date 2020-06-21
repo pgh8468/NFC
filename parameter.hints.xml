@@ -3,6 +3,7 @@
     <blacklists>
       <blacklist language="Java">
         <added pattern="androidx.recyclerview.widget.LinearLayoutManager.LinearLayoutManager(context)" />
+        <added pattern="android.nfc.NfcAdapter.setNdefPushMessageCallback(callback,activity,activities)" />
       </blacklist>
     </blacklists>
   </component>
