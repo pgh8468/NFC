@@ -94,7 +94,6 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:background="@drawable/button_bg"
-        android:backgroundTint="#ffffff"
         android:fontFamily="@font/gmarketsansttfmedium"
         android:text="  Find Your ID/Password "
         android:textColor="#ffffff"
