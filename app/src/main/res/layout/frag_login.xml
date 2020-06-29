@@ -43,8 +43,7 @@
         android:theme="@style/myEditTextStyle"
         app:layout_constraintBottom_toTopOf="@+id/button_signin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:passwordToggleEnabled="true">
+        app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/Edit_Login_Pw"

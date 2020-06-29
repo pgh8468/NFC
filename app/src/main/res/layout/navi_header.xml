@@ -25,7 +25,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="김민균"
             android:textSize="25dp"
             android:textColor="#ffffff"
             android:id="@+id/client_name"/>
@@ -42,7 +41,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="신라 호텔에 오신것을 환영합니다"
+        android:text="플라타너스 호텔에 오신것을 환영합니다"
         android:textSize="15dp"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"

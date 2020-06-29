@@ -42,7 +42,7 @@ public class Frag_nfc extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frag_nfc, null);
 
-        nfc_booked = view.findViewById(R.id.txt_remain_book_date);
+       // nfc_booked = view.findViewById(R.id.txt_remain_book_date);
         nfc_detail_booked = view.findViewById(R.id.txt_logined_book_info);
         btn_issue_key = view.findViewById(R.id.btn_issue_key);
         txt_logined_book_info = view.findViewById(R.id.txt_logined_book_info);
