@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.viewpager.widget.ViewPager;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -113,7 +114,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //NFC 화면을 첫화면으로 고정
         getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, new Frag_nfc(), null).addToBackStack(null).commit();
-
     }
 
     @Override
@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-
+    //왼쪽 메뉴판에 대한 클릭 리스너
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
@@ -141,6 +141,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
                 }).show();
             }
+
         }
         else if (id == R.id.check_reserve) {
 
@@ -172,8 +173,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         }
         else if (id == R.id.facility_guide) {
-            Intent intent = new Intent(this, NfcIssueKey.class);
-            startActivity(intent);
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_fragment, new facility_guide(), null).addToBackStack(null).commit();
         }
         else if(id == R.id.menu_logout){
 

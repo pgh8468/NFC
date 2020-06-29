@@ -27,11 +27,12 @@
             app:headerLayout="@layout/navi_header"
             android:layout_gravity="start"
             app:itemTextColor="#ffffff"
-            android:background="#494848"
+            android:background="#000000"
             android:id="@+id/navigationview"
             android:foregroundGravity="right">
 
         </com.google.android.material.navigation.NavigationView>
+
 
     </androidx.drawerlayout.widget.DrawerLayout>
 

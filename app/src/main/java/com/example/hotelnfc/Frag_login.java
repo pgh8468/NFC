@@ -37,6 +37,7 @@ public class Frag_login extends Fragment {
     TextInputEditText textInputEditTextID, textInputEditTextPW;
     Button button_signin, button_signup, button_find;
 
+    MainActivity mainActivity = (MainActivity) getActivity();
 
     Frag_login frag_login;
 
@@ -53,7 +54,7 @@ public class Frag_login extends Fragment {
         button_signup = view.findViewById(R.id.button_signup);
         button_find = view.findViewById(R.id.button_find);
 
-        textInputLayoutPW.setPasswordVisibilityToggleEnabled(false); //자물쇠 모양 보여주는거임 지우지마세요
+        //textInputLayoutPW.setPasswordVisibilityToggleEnabled(false); //자물쇠 모양 보여주는거임 지우지마세요
 
         button_signin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,7 +103,12 @@ public class Frag_login extends Fragment {
         button_find.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Frag_Find frag_find = new Frag_Find();
 
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentManager.beginTransaction().replace(R.id.content_fragment, frag_find, null).addToBackStack(null).commit();
+                fragmentTransaction.commit();
             }
         });
 

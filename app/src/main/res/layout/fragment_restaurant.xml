@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".restaurant"
+    android:background="#000000">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="3">
+
+            <ImageView
+                android:id="@+id/health_img"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:src="@drawable/restaurant"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:weightSum="3"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:text="위치안내"
+                        android:fontFamily="@font/gmarketsansttfmedium"
+                        android:textColor="#ffffff"
+                        android:textSize="18sp"
+                        android:paddingTop="6dp"
+                        android:paddingBottom="6dp"
+                        android:gravity="center_horizontal"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:text="서울시 강남구 영남대로 551"
+                        android:fontFamily="@font/gmarketsansttfmedium"
+                        android:textColor="#ffffff"
+                        android:textSize="15sp"
+                        android:gravity="center"
+                        android:layout_weight="1"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:text="운영시간"
+                        android:fontFamily="@font/gmarketsansttfmedium"
+                        android:textColor="#ffffff"
+                        android:textSize="18sp"
+                        android:gravity="center"
+                        android:paddingTop="13dp"
+                        android:paddingBottom="13dp"
+                        android:layout_weight="2"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:text="07:00 ~ 22:00"
+                        android:fontFamily="@font/gmarketsansttfmedium"
+                        android:textColor="#ffffff"
+                        android:textSize="15sp"
+                        android:gravity="center"
+                        android:layout_weight="1"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:text="사용문의"
+                        android:fontFamily="@font/gmarketsansttfmedium"
+                        android:textColor="#ffffff"
+                        android:textSize="18sp"
+                        android:gravity="center"
+                        android:layout_weight="2"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:text="사용요금 또는 문의: 호텔 투숙객 무료, 일반인 33,000"
+                        android:fontFamily="@font/gmarketsansttfmedium"
+                        android:textColor="#ffffff"
+                        android:textSize="15sp"
+                        android:gravity="center"
+                        android:layout_weight="1"/>
+
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

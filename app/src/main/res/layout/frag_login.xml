@@ -9,6 +9,20 @@
     android:background="#000000"
     android:weightSum="3">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="165dp"
+        android:layout_height="165dp"
+        android:layout_marginStart="137dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="137dp"
+        android:layout_marginBottom="150dp"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayout_login_id"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/logo_name" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout_login_id"
         android:layout_width="0dp"
@@ -43,8 +57,7 @@
         android:theme="@style/myEditTextStyle"
         app:layout_constraintBottom_toTopOf="@+id/button_signin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:passwordToggleEnabled="true">
+        app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/Edit_Login_Pw"
@@ -94,7 +107,6 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:background="@drawable/button_bg"
-        android:backgroundTint="#ffffff"
         android:fontFamily="@font/gmarketsansttfmedium"
         android:text="  Find Your ID/Password "
         android:textColor="#ffffff"

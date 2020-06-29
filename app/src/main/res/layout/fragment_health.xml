@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    tools:context=".health">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="3">
+
+            <ImageView
+                android:id="@+id/health_img"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:src="@drawable/health"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="장소 : 3F"
+                    android:fontFamily="@font/gmarketsansttfmedium"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp"
+                    android:paddingTop="13dp"
+                    android:paddingBottom="13dp"
+                    android:gravity="center_horizontal"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="운영시간 : 06:00 - 22:00"
+                    android:fontFamily="@font/gmarketsansttfmedium"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:paddingTop="13dp"
+                    android:paddingBottom="13dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="운동복 대여 없음."
+                    android:fontFamily="@font/gmarketsansttfmedium"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:paddingTop="13dp"
+                    android:paddingBottom="13dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="운동기구를 던지거나 큰 소리는 자제해주세요."
+                    android:textColor="#ffffff"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/gmarketsansttfmedium"
+                    android:gravity="center"
+                    android:paddingTop="13dp"
+                    android:paddingBottom="13dp"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
