@@ -48,7 +48,7 @@ public class Frag_nfc extends Fragment {
         txt_logined_book_info = view.findViewById(R.id.txt_logined_book_info);
 
         if(MainActivity.logined_id != null){
-            txt_logined_book_info.setText("방 문 앞에서 NFC 를 활성화 하고 모바일키 발급 받기를 눌러주세요.");
+            txt_logined_book_info.setText("방 문 앞에서 NFC 를\n활성화 하고 모바일키 \n발급 받기를 눌러주세요.");
 
             MainActivity.client_name.setText(MainActivity.logined_id);
         }
