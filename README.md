@@ -4,31 +4,31 @@
 각 주요 소스코드의 기능은 다음과 같습니다.
 
 안드로이드
-MainActivity - 화면을 프래그먼트로 구성하여 프래그먼트와 네비게이션바를 호출하기 위한 메인클래스입니다.
+MainActivity - 화면을 프래그먼트로 구성하여 프래그먼트와 네비게이션바를 호출하기 위한 메인클래스입니다.  
 Frag_nfc - 메인화면입니다. 네비게이션바를 클릭하여 네비게이션바에 속해있는 아이템을 클릭하면 각 프래그먼트로 넘어갈 수 있고,
            버튼을 클릭하면 핸드폰의 nfc 기능을 사용하는 액티비티로 전환됩니다. 해당 기능은 로그인을 해야 사용할 수 있습니다.
-Frag_Find - 회원 정보를 찾기위한 프래그먼트로서 아이디와 비밀번호를 찾을 수 있습니다.
-Frag_login - 아이디와 비밀번호를 입력받아 사용자의 로그인을 진행하는 프래그먼트 입니다.
-Frag_reserve - 예약날짜를 선택하는 프래그먼트 입니다. 캘린더를 사용하여 날짜를 선택할 수 있습니다.
+Frag_Find - 회원 정보를 찾기위한 프래그먼트로서 아이디와 비밀번호를 찾을 수 있습니다.  
+Frag_login - 아이디와 비밀번호를 입력받아 사용자의 로그인을 진행하는 프래그먼트 입니다.  
+Frag_reserve - 예약날짜를 선택하는 프래그먼트 입니다. 캘린더를 사용하여 날짜를 선택할 수 있습니다.  
 Frag_room_setting - 선택한 방을 예약하기 위한 프래그먼트 입니다. 다양한 사용자가 객실의 문을 제어하기 위해 제어 권한을 주고 싶은 사용자의
-                    핸드폰 번호를 입력할 수 있습니다.
-Frag_reserve_room - 예약가능한 방을 출력하는 프래그먼트입니다. 사용자가 선택한 날짜를 기반으로 예약이 가능한 방만 호출합니다.
+                    핸드폰 번호를 입력할 수 있습니다.  
+Frag_reserve_room - 예약가능한 방을 출력하는 프래그먼트입니다. 사용자가 선택한 날짜를 기반으로 예약이 가능한 방만 호출합니다.  
 Frag_check_reserve - 로그인 된 아이디를 기반으로 예약되어 있는 방이 있는지 확인하는 프래그먼트입니다. 방이 예약되어 있는 경우 예약된 방을
-                     리스트로 출력합니다.
+                     리스트로 출력합니다.  
 Frag_reserve_check_two - 로그인 된 아이디를 기반으로 예약되어 있는 방의 상세 정보를 확인할 수 있는 프래그먼트 입니다. 해당방을 제어할 수 있는
-                         사용자의 전화번호를 확인할 수 있습니다.
+                         사용자의 전화번호를 확인할 수 있습니다.  
 NfcIssueKey - 메인 프래그먼트에서 클릭시 이동하는 액티비티입니다. 해당 액티비티가 시작되면 유심에서 사용자의 전화번호를 가져오고 해당 전화번호를
-              NFC 통신을 하기위한 NDEF 타입으로 변환 후 NFC 가 태깅되었을때 해당 정보를 태깅 된 NFC 모듈에 전송합니다.
-facility_guide - 호텔에서 제공하는 시설에 대한 정보를 확인할 수 있는 프래그먼트입니다.
-URL_make - 서버에 접속하기 위한 url 주소를 만드는 클래스입니다.
-Item_room, Item_checkroom, - 방의 정보를 리스트로 띄우기 위한 아이템 클래스 입니다.
-EventDecorator, OneDayDecorator, SaturdayDecorator, SundayDecorator - 캘린더의 동작 및 주말의 날짜의 색 변환을 위한 클래스들입니다.
-CheckroomAdapter, ItemRoomAdapter, ViewPagerAdapter - 아이템 클래스들을 리스트로 띄우기 위한 Adapter 입니다.
-health, restaurant, swimming_pool - 호텔에서 제공하는 시설을 띄우기 위한 아이템 클래스입니다.
-PermissionCheck - 안드로이드 nfc 통신을 본 프로젝트에 얹기 전에 실습을 진행하기 위한 폴더입니다. NfcIssueKey.class 와 내용은 동일합니다.
+              NFC 통신을 하기위한 NDEF 타입으로 변환 후 NFC 가 태깅되었을때 해당 정보를 태깅 된 NFC 모듈에 전송합니다.  
+facility_guide - 호텔에서 제공하는 시설에 대한 정보를 확인할 수 있는 프래그먼트입니다.  
+URL_make - 서버에 접속하기 위한 url 주소를 만드는 클래스입니다.  
+Item_room, Item_checkroom, - 방의 정보를 리스트로 띄우기 위한 아이템 클래스 입니다.  
+EventDecorator, OneDayDecorator, SaturdayDecorator, SundayDecorator - 캘린더의 동작 및 주말의 날짜의 색 변환을 위한 클래스들입니다.  
+CheckroomAdapter, ItemRoomAdapter, ViewPagerAdapter - 아이템 클래스들을 리스트로 띄우기 위한 Adapter 입니다.  
+health, restaurant, swimming_pool - 호텔에서 제공하는 시설을 띄우기 위한 아이템 클래스입니다.  
+PermissionCheck - 안드로이드 nfc 통신을 본 프로젝트에 얹기 전에 실습을 진행하기 위한 폴더입니다. NfcIssueKey.class 와 내용은 동일합니다.  
 
-아두이노
-Adafruit_PN532 - 아두이노에서 NFC 모듈을 사용하기 위한 라이브러리 소스 코드 입니다. 지원하는 통신 방식으로는 SPI, UART, I2c 방식을 지원합니다.
-NDEF master - NFC 모듈에서 데이터 포멧을 NDEF 로 읽고 쓰기 위한 라이브러리 입니다.
-nfc control - NFC 의 uid 를 이용하여 솔레노이드를 제어하기 위한 코드입니다.
-LCD_Button - 아두이노에서 비디오 인터페이스를 지원하지 않아 사용자에게 화면을 보여주기 위하여 LCD 를 사용하는 코드입니다.
+아두이노  
+Adafruit_PN532 - 아두이노에서 NFC 모듈을 사용하기 위한 라이브러리 소스 코드 입니다. 지원하는 통신 방식으로는 SPI, UART, I2c 방식을 지원합니다.  
+NDEF master - NFC 모듈에서 데이터 포멧을 NDEF 로 읽고 쓰기 위한 라이브러리 입니다.  
+nfc control - NFC 의 uid 를 이용하여 솔레노이드를 제어하기 위한 코드입니다.  
+LCD_Button - 아두이노에서 비디오 인터페이스를 지원하지 않아 사용자에게 화면을 보여주기 위하여 LCD 를 사용하는 코드입니다.  
