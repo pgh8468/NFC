@@ -9,9 +9,15 @@ import android.Manifest;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.pm.PermissionInfo;
+import android.nfc.NdefMessage;
+import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
+import android.nfc.Tag;
+import android.nfc.tech.Ndef;
+import android.nfc.tech.NdefFormatable;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
@@ -22,10 +28,14 @@ import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.Locale;
+
 public class NfcIssueKey extends AppCompatActivity {
 
     private NfcAdapter nfcAdapter;
-    private PendingIntent pendingIntent;
+    private NdefMessage ndefMessage;
+    private PendingIntent pendingIntent;  // NFC로 전송받은 데이터를 Intent 를 이용하여 다른 액티비티로 넘겨주는 역할
+    IntentFilter[] writeTagFilter;
     private final int MY_PERMISSION_NFC_CODE = 1000;
     private final int MY_PERMISSION_PHONE_NUMBER = 1001;
     private String phone_number;
@@ -71,8 +81,17 @@ public class NfcIssueKey extends AppCompatActivity {
 
                     if(nfc_permission_check != 0){
 
-                        tv1.setText(""+nfc_permission_check+"");
+                        //nfc 허가 안해준 사람들임
+                        Toast.makeText(this, "NFC 를 허가해주세요.", Toast.LENGTH_LONG).show();
 
+
+                    }
+                    else{
+                        //SINGLE_TOP FLAG 는 현재 Activity에서 Intent를 받게 할 수 있음
+                        pendingIntent = PendingIntent.getActivity(this, 0 , new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP),0);
+
+                        IntentFilter tagDect = new IntentFilter(NfcAdapter.ACTION_TAG_DISCOVERED);
+                        writeTagFilter = new IntentFilter[] {tagDect};
                     }
 
 
@@ -228,4 +247,71 @@ public class NfcIssueKey extends AppCompatActivity {
         }
     }
 
+    //Activity 가 화면에 보이고 있을 때에만 NFC 태그 인식
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (nfcAdapter != null){
+            nfcAdapter.enableForegroundDispatch(this, pendingIntent, writeTagFilter, null);
+
+            if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(getIntent().getAction())){
+
+
+            }
+        }
+        else{
+
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (nfcAdapter != null){
+            nfcAdapter.disableForegroundDispatch(this);
+        }
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        //EXTRA_NDEF_MESSAGE 는 수신할때 사용하는 태그
+        Tag nfctag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
+        ndefMessage = new NdefMessage(new NdefRecord[]{new MakeNDEFRecord().changeNDEFType(USIMInfoCheck(), Locale.ENGLISH, true)});
+        if (write_tag(ndefMessage, nfctag)){
+            Log.e("success", "congratulations");
+        }
+        else{
+            Log.e("fail", "try again");
+        }
+    }
+
+    public boolean write_tag(NdefMessage ndefMessage, Tag tag){
+
+        try{
+            Ndef ndef = Ndef.get(tag);
+            if(ndef != null){
+                ndef.connect();
+                ndef.writeNdefMessage(ndefMessage);
+                return true;
+            }
+            else{
+                NdefFormatable ndefFormatable = NdefFormatable.get(tag);
+                if(ndefFormatable != null){
+                    ndefFormatable.connect();
+                    ndefFormatable.format(ndefMessage);
+                    ndefFormatable.close();
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return false;
+    }
 }

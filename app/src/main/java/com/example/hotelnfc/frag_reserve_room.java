@@ -101,8 +101,6 @@ public class frag_reserve_room extends Fragment {
             Toast.makeText(getContext()," 현재 예약할 수 있는 방이 없습니다.", Toast.LENGTH_LONG).show();
         }
 
-        arrayList.add(new Item_room("King", "90,500", R.drawable.first));
-
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
